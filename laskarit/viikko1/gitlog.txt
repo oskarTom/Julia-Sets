@@ -13,7 +13,7 @@ commit a124e9bcb430f2b5382bd3c69e82575c165cc122
 Author: Tom Rindell <tomoskar@protonmail.com>
 Date:   Mon Mar 9 22:12:54 2020 +0200
 
-    tiedostoja lis‰tty
+    tiedostoja lis√§tty
 
  tiedostoja/file1 | 0
  tiedostoja/file2 | 0
@@ -24,7 +24,7 @@ commit c47936b3a7c17a89f85931f17989f6425f453048
 Author: Tom Rindell <tomoskar@protonmail.com>
 Date:   Mon Mar 9 21:42:13 2020 +0200
 
-    lis‰‰ muutoksia
+    lis√§√§ muutoksia
 
  eka.txt    | 3 ++-
  kolmas.txt | 2 +-
@@ -52,7 +52,7 @@ commit 9a2a63f3fdaf3d4e525a18d7e12dccb981f1d39d
 Author: Tom Rindell <tomoskar@protonmail.com>
 Date:   Mon Mar 9 21:22:51 2020 +0200
 
-    teksti‰ muutettu
+    teksti√§ muutettu
 
  tiedosto.txt | 3 +--
  1 file changed, 1 insertion(+), 2 deletions(-)
@@ -61,7 +61,7 @@ commit d2fea422acce302357b515dd89d167c188461624
 Author: Tom Rindell <tomoskar@protonmail.com>
 Date:   Mon Mar 9 21:21:03 2020 +0200
 
-    lis‰tty paljon teksti‰
+    lis√§tty paljon teksti√§
 
  tiedosto.txt | 6 +++++-
  1 file changed, 5 insertions(+), 1 deletion(-)
@@ -70,7 +70,7 @@ commit 0581ebd1c782b1da611fff765bb42c04e14bbf9a
 Author: Tom Rindell <tomoskar@protonmail.com>
 Date:   Sun Mar 8 22:29:05 2020 +0200
 
-    hakemisto lis‰tty
+    hakemisto lis√§tty
 
  stuff/neljas.txt | 0
  1 file changed, 0 insertions(+), 0 deletions(-)
@@ -79,7 +79,7 @@ commit 7b51ea90f452ebe2301a53fbabc7f3fb77094d7e
 Author: Tom Rindell <tomoskar@protonmail.com>
 Date:   Sun Mar 8 22:27:09 2020 +0200
 
-    lis‰tty teksti‰
+    lis√§tty teksti√§
 
  kolmas.txt | 1 +
  toinen.txt | 1 +
@@ -89,7 +89,7 @@ commit 678351bb82c51ef99479a74f53845ef54f6ba1bd
 Author: Tom Rindell <tomoskar@protonmail.com>
 Date:   Sun Mar 8 22:25:21 2020 +0200
 
-    kolmas lis‰tty
+    kolmas lis√§tty
 
  kolmas.txt | 0
  1 file changed, 0 insertions(+), 0 deletions(-)
@@ -98,7 +98,7 @@ commit 8e236c30b4346fa9c1d4cef29bd8a7455b9f17db
 Author: Tom Rindell <tomoskar@protonmail.com>
 Date:   Sun Mar 8 22:20:33 2020 +0200
 
-    muutos ja lis‰ys
+    muutos ja lis√§ys
 
  tiedosto.txt | 1 +
  toinen.txt   | 0
@@ -112,3 +112,5 @@ Date:   Sun Mar 8 22:15:14 2020 +0200
 
  tiedosto.txt | 0
  1 file changed, 0 insertions(+), 0 deletions(-)
+ 
+ teksti
