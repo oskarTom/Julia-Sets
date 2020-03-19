@@ -72,6 +72,14 @@ public class MaksukorttiTest {
     }
     
     @Test
+    public void syoMaukkaastiEiVieSaldoaNegatiiviseksi() {
+        kortti.syoMaukkaasti();
+        kortti.syoMaukkaasti();
+        kortti.syoMaukkaasti();
+        assertEquals("Kortilla on rahaa 2.0 euroa", kortti.toString());
+    }
+    
+    @Test
     public void kortilleVoiLadataRahaa() {
         kortti.lataaRahaa(25);
         assertEquals("Kortilla on rahaa 35.0 euroa", kortti.toString());
@@ -81,5 +89,25 @@ public class MaksukorttiTest {
     public void kortinSaldoEiYlitaMaksimiarvoa() {
         kortti.lataaRahaa(200);
         assertEquals("Kortilla on rahaa 150.0 euroa", kortti.toString());
+    }
+    
+    @Test
+    public void kortinSaldoEiAlitaMinimiarvoa() {
+        kortti.lataaRahaa(-9);
+        assertEquals("Kortilla on rahaa 10.0 euroa", kortti.toString());
+    }
+    
+    @Test
+    public void voiOstaaLoppurahoullaEdullisen(){
+        kortti = new Maksukortti(2.5);
+        kortti.syoEdullisesti();
+        assertEquals("Kortilla on rahaa 0.0 euroa", kortti.toString());
+    }
+    
+    @Test
+    public void voiOstaaLoppurahoullaMaukkaan(){
+        kortti = new Maksukortti(4);
+        kortti.syoMaukkaasti();
+        assertEquals("Kortilla on rahaa 0.0 euroa", kortti.toString());
     }
 }
