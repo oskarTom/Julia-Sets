@@ -9,3 +9,4 @@ Perusversion jälkeen ohjelmaa voidaan laajentaa esimerkiksi seuraavilla tavoill
 * Myös Mandelbrotin joukon kuvaaminen
 * Zoomaus johonkin joukon alueeseen
 * Dynaaminen siirtymä yhdestä Julia joukosta toiseen
+* Kuvausten tallentaminen ja lataaminen
