@@ -1,3 +1,5 @@
+![GitHub Logo](/images/Julia 1.png)
+Format: ![Alt Text](url)
 
 # Julian joukot
 Projekti on tehty hakemistoon Fraktaalit.
