@@ -1,4 +1,4 @@
-![GitHub Logo](/images/Julia 1.png)
+![GitHub Logo](https://github.com/oskarTom/ot-harjoitustyo/blob/master/images/Julia%201.png)
 Format: ![Alt Text](url)
 
 # Julian joukot
