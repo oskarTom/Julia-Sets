@@ -28,7 +28,7 @@ public class UI extends Application{
         Scanner scanner = new Scanner(System.in);
         double Re = -0.8;
         double Im = 0.156;
-        int iterations = 375;
+        int iterations = 1500;
         
         Complex c;
         
@@ -41,19 +41,10 @@ public class UI extends Application{
         
         c = new Complex(Re,Im);
         
-        /*Complex f = c.add(z.product(z));
-        for (int i = 0; i < iterations; i++) {
-            f = c.add(f.product(f));
-            if (f.modulus() > 2) {
-                System.out.println("Escaped! No of iterations: "+i);
-            }
-        }
-        if (f.modulus() <= 2) System.out.println("In Julia set");
-        */
-        
         //------------------------------------------------
         //                    DRAWING
         //------------------------------------------------
+        
         Canvas canvas = new Canvas(screenWidth,screenHeight);
         PixelWriter pencil = canvas.getGraphicsContext2D().getPixelWriter();
         
@@ -64,12 +55,12 @@ public class UI extends Application{
                 if(test == 0){
                     pencil.setColor(x, y, Color.BLACK);
                 }else{
-                    if(test<125){
-                        pencil.setColor(x, y, Color.rgb(255, 255-test*2, 255-test*2));
-                    }else if(test<250){
-                        pencil.setColor(x, y, Color.rgb(255, (test-125)*2, 0));
+                    if(test%375 < 125){
+                        pencil.setColor(x, y, Color.rgb(255, 255-test%375*2, 255-test%375*2));
+                    }else if(test%375 < 250){
+                        pencil.setColor(x, y, Color.rgb(255, (test%375-125)*2, 0));
                     }else{
-                        pencil.setColor(x, y, Color.rgb(255, 255, (test-250)*2));
+                        pencil.setColor(x, y, Color.rgb(255, 255, (test%375-250)*2));
                     }
                 }
             }
