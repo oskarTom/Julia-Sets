@@ -2,6 +2,7 @@ package com.mycompany.fraktaalit;
 
 import java.util.Scanner;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.PixelWriter;
@@ -13,16 +14,12 @@ import javafx.stage.Stage;
  *
  * @author tomos
  */
-public class Main {
-    public static void main(String[] args) {
-        UI.main(args);
-    }
+public class UI extends Application{
     
-    /*    
     @Override
     public void start(Stage primaryStage) throws Exception {
-        int screenWidth = 1500;
-        int screenHeight = 1000;
+        int screenWidth = 1200;
+        int screenHeight = 800;
         double width = 4;
         double height = 2.67;
         
@@ -57,8 +54,6 @@ public class Main {
         //------------------------------------------------
         //                    DRAWING
         //------------------------------------------------
-        
-/*
         Canvas canvas = new Canvas(screenWidth,screenHeight);
         PixelWriter pencil = canvas.getGraphicsContext2D().getPixelWriter();
         
@@ -94,8 +89,9 @@ public class Main {
         primaryStage.show();
     }
     
+    
     public static void main(String[] args){
-        launch(Main.class);
+        launch(UI.class);
     }
     
     
@@ -109,6 +105,6 @@ public class Main {
         }
         return 0;
     }
-*/
+
     
 }
