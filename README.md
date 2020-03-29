@@ -1,3 +1,4 @@
+![Julia Set](https://github.com/oskarTom/ot-harjoitustyo/blob/master/images/Julia%201.png)
 
 # Julian joukot
 Projekti on tehty hakemistoon Fraktaalit.
