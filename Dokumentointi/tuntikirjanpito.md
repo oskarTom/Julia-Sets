@@ -6,3 +6,4 @@ Päivä | Aika | Mitä tein
 |  | 2h | Työstin graafista käyttöliittymää
 |  | 1h | Lisäsin värit
 29.3 | 1h | Muokkasin värien toimintaa
+|  | 2h | Päivitin Java 11:een, tein tarvittavat konfiguraatiot ja testailin ohjelmaa laitoksen koneella
