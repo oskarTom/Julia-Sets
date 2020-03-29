@@ -17,17 +17,17 @@ public class Main extends Application{
     
     @Override
     public void start(Stage primaryStage) throws Exception {
-        int screenWidth = 800;
-        int screenHeight = 800;
+        int screenWidth = 1500;
+        int screenHeight = 1000;
         double width = 4;
-        double height = 4;
+        double height = 2.67;
         
         
          //LOGIC
         Scanner scanner = new Scanner(System.in);
-        double Re = 0;
-        double Im = 0.75;
-        int iterations = 20;
+        double Re = -0.8;
+        double Im = 0.156;
+        int iterations = 375;
         
         Complex c;
         
@@ -59,8 +59,17 @@ public class Main extends Application{
         
         for(int x = 0; x < screenWidth; x++){
             for(int y = 0; y < screenHeight; y++){
-                if (escapeTest(new Complex(x*width/screenWidth-width/2, y*height/screenHeight-height/2), c, iterations)) {
+                int test = escapeTest(new Complex(x*width/screenWidth-width/2, y*height/screenHeight-height/2), c, iterations);
+                if(test == 0){
                     pencil.setColor(x, y, Color.BLACK);
+                }else{
+                    if(test<125){
+                        pencil.setColor(x, y, Color.rgb(255, 255-test*2, 255-test*2));
+                    }else if(test<250){
+                        pencil.setColor(x, y, Color.rgb(255, (test-125)*2, 0));
+                    }else{
+                        pencil.setColor(x, y, Color.rgb(255, 255, (test-250)*2));
+                    }
                 }
             }
         }
@@ -84,15 +93,15 @@ public class Main extends Application{
     }
     
     
-    public boolean escapeTest(Complex z, Complex c, int iterations){
+    public int escapeTest(Complex z, Complex c, int iterations){
         Complex f = c.add(z.product(z));
         for (int i = 1; i < iterations; i++) {
             f = c.add(f.product(f));
             if (f.modulus() > 2) {
-                return false;
+                return i;
             }
         }
-        return true;
+        return 0;
     }
 
     
