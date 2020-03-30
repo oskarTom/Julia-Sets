@@ -8,7 +8,7 @@ Projekti on tehty hakemistoon Fraktaalit.
 
 [Työaikakirjanpito](https://github.com/oskarTom/ot-harjoitustyo/blob/master/Dokumentointi/tuntikirjanpito.md)
 
-##Komentorivitoiminnot
+## Komentorivitoiminnot
 Testien suorittaminen toteutetaan komennolla
     mvn test
 Testikattavuusraportin luominen tapahtuu komennolla
