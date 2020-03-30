@@ -9,7 +9,7 @@ Esimerkkejä kompleksiluvun arvolle:
 
 (0.285, 0.01)
 
-(-0.8, 0.15) *(vaatii enemmän iteraatioita)*
+(-0.8, 0.156)
 
 Projekti on toteutettu hakemistoon Fraktaalit.
 
