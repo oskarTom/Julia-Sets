@@ -22,22 +22,20 @@ public class UI extends Application{
         int screenHeight = 800;
         double width = 4;
         double height = 2.67;
-        
-        
-         //LOGIC
+
         Scanner scanner = new Scanner(System.in);
         double Re = -0.8;
         double Im = 0.156;
-        int iterations = 1500;
+        int iterations = 2000;
         
         Complex c;
         
-        //System.out.println("Syötä kompleksiluvun reaaliosa:");
-        //Re = Double.parseDouble(scanner.nextLine());
-        //System.out.println("Syötä kompleksiluvun imaginääriosa:");
-        //Im = Double.parseDouble(scanner.nextLine());
-        //System.out.println("Kuinka monta iteraatiota?");
-        //iterations = Integer.parseInt(scanner.nextLine());
+        System.out.println("Syötä kompleksiluvun reaaliosa:");
+        Re = Double.parseDouble(scanner.nextLine());
+        System.out.println("Syötä kompleksiluvun imaginääriosa:");
+        Im = Double.parseDouble(scanner.nextLine());
+        System.out.println("Kuinka monta iteraatiota?");
+        iterations = Integer.parseInt(scanner.nextLine());
         
         c = new Complex(Re,Im);
         
@@ -48,33 +46,24 @@ public class UI extends Application{
         Canvas canvas = new Canvas(screenWidth,screenHeight);
         PixelWriter pencil = canvas.getGraphicsContext2D().getPixelWriter();
         
-        
         for(int x = 0; x < screenWidth; x++){
             for(int y = 0; y < screenHeight; y++){
                 int test = escapeTest(new Complex(x*width/screenWidth-width/2, y*height/screenHeight-height/2), c, iterations);
                 if(test == 0){
                     pencil.setColor(x, y, Color.BLACK);
                 }else{
-                    if(test%375 < 125){
-                        pencil.setColor(x, y, Color.rgb(255, 255-test%375*2, 255-test%375*2));
-                    }else if(test%375 < 250){
-                        pencil.setColor(x, y, Color.rgb(255, (test%375-125)*2, 0));
+                    if(test<=100){
+                        pencil.setColor(x, y, Color.hsb(test*0.4+150,1,1,test*0.01-0.01));
                     }else{
-                        pencil.setColor(x, y, Color.rgb(255, 255, (test%375-250)*2));
+                        pencil.setColor(x, y, Color.hsb(test*0.4+150,1,1));
                     }
                 }
             }
         }
         
-        pencil.setColor(0, 0, Color.RED);
-        
         BorderPane setup = new BorderPane();
         setup.setCenter(canvas);
         Scene scene = new Scene(setup);
-        
-        
-       
-        
         
         primaryStage.setScene(scene);
         primaryStage.show();
