@@ -32,6 +32,8 @@ public class UI extends Application{
         Complex c = new Complex(Re,Im);
         
         Canvas canvas = new Canvas(screenWidth,screenHeight);
+        JuliaLogic julia = new JuliaLogic(canvas);
+        
         BorderPane setup = new BorderPane();
         GridPane menu = new GridPane();
         
@@ -63,12 +65,9 @@ public class UI extends Application{
             reValue.setText(newValue+"");
             if(!c.equals(new Complex(newValue, imSlider.getValue()))){
                 c.setReal(newValue);
-                draw(canvas, screenWidth, screenHeight, width, height, iterations, c);
+                julia.draw(width, height, iterations, c);
             }
             reSlider.setValue(newValue);
-        });
-        reSlider.setOnMouseReleased(e -> {
-            draw(canvas, screenWidth, screenHeight, width, height, iterations, new Complex(reSlider.getValue(),imSlider.getValue()));
         });
         
         imSlider.setMin(-1);
@@ -90,16 +89,17 @@ public class UI extends Application{
             imValue.setText(newValue+"");
             if(!c.equals(new Complex(reSlider.getValue(), newValue))){
                 c.setImaginary(newValue);
-                draw(canvas, screenWidth, screenHeight, width, height, iterations, c);
+                julia.draw(width, height, iterations, c);
             }
             imSlider.setValue(newValue);
         });
         
-        draw(canvas, screenWidth, screenHeight, width, height, iterations, new Complex(reSlider.getValue(),imSlider.getValue()));
+        julia.draw(width, height, iterations, c);
         
         Scene scene = new Scene(setup);
         
         primaryStage.setScene(scene);
+        primaryStage.setTitle("Julia Sets");
         primaryStage.show();
     }
     
@@ -107,39 +107,4 @@ public class UI extends Application{
     public static void main(String[] args){
         launch(UI.class);
     }
-    
-    
-    public void draw(Canvas canvas, int screenWidth, int screenHeight, double width, double height, int iterations, Complex c){
-        PixelWriter pencil = canvas.getGraphicsContext2D().getPixelWriter();
-        if(escapeTest(new Complex(0,0), c, iterations) == 0){
-            iterations = 50;
-        }
-        for(int x = 0; x < screenWidth; x++){
-            for(int y = 0; y < screenHeight; y++){
-                int test = escapeTest(new Complex(x*width/screenWidth-width/2, y*height/screenHeight-height/2), c, iterations);
-                if(test == 0){
-                    pencil.setColor(x, y, Color.BLACK);
-                }else{
-                    if(test<=100){
-                        pencil.setColor(x, y, Color.hsb(test*0.4+150,1,1,test*0.01-0.01));
-                    }else{
-                        pencil.setColor(x, y, Color.hsb(test*0.4+150,1,1));
-                    }
-                }
-            }
-        }
-    }
-    
-    public int escapeTest(Complex z, Complex c, int iterations){
-        Complex f = c.add(z.product(z));
-        for (int i = 1; i < iterations; i++) {
-            f = c.add(f.product(f));
-            if (f.modulus() > 2) {
-                return i;
-            }
-        }
-        return 0;
-    }
-
-    
 }
