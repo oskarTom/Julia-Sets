@@ -19,8 +19,25 @@ public class Complex {
         return this.Re;
     }
     
+    public void setReal(double Re){
+        this.Re = Re;
+    }
+    
     public double getImaginary(){
         return this.Im;
+    }
+    
+    public void setImaginary(double Im){
+        this.Im = Im;
+    }
+    
+    public boolean equals(Complex c){
+        if(this.Re == c.getReal()){
+            if(this.Im == c.getImaginary()){
+                return true;
+            }
+        }
+        return false;
     }
     
     public Complex add(Complex z){ 
