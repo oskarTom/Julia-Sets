@@ -7,3 +7,5 @@ Päivä | Aika | Mitä tein
 |  | 1h | Lisäsin värit
 29.3 | 1h | Muokkasin värien toimintaa
 |  | 2h | Päivitin Java 11:een, tein tarvittavat konfiguraatiot ja testailin ohjelmaa laitoksen koneella
+2.4 | 1h | Lisäsin sliderit ja napin
+|  | 2h | Poistin napin. Kuva päivittyy nyt slidereita liikuttamalla
