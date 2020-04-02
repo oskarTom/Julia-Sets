@@ -1,18 +1,15 @@
 package com.mycompany.fraktaalit;
 
-import java.util.Scanner;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -24,12 +21,11 @@ public class UI extends Application{
     
     @Override
     public void start(Stage primaryStage) throws Exception {
-        int screenWidth = 1200;
-        int screenHeight = 800;
+        int screenWidth = 600;
+        int screenHeight = 400;
         double width = 4;
         double height = 2.67;
 
-        Scanner scanner = new Scanner(System.in);
         double Re = -0.68;
         double Im = -0.299;
         int iterations = 10000;
@@ -47,7 +43,6 @@ public class UI extends Application{
         
         
         Slider reSlider = new Slider();
-        reSlider.setSnapToTicks(true);
         reSlider.setMin(-2);
         reSlider.setMax(1);
         reSlider.setValue(Re);
@@ -82,11 +77,12 @@ public class UI extends Application{
         imSlider.setShowTickLabels(true);
         imSlider.setShowTickMarks(true);
         imSlider.setMajorTickUnit(1);
+        imSlider.setMinorTickCount(5);
+        imSlider.setBlockIncrement(0.01);
         Label imValue = new Label(""+Im);
         menu.add(new Label("Im: "),1,2);
         menu.add(imSlider,2,2);
         menu.add(imValue,3,2);
-        //menu.getChildren().add(imLayout);
         
         imSlider.valueProperty().addListener(e -> {
             double newValue = Math.round(imSlider.getValue()*100.0)/100.0;
@@ -97,11 +93,6 @@ public class UI extends Application{
                 draw(canvas, screenWidth, screenHeight, width, height, iterations, c);
             }
             imSlider.setValue(newValue);
-        });
-        
-        imSlider.setOnMouseReleased(e -> {
-            draw(canvas, screenWidth, screenHeight, width, height, iterations, new Complex(reSlider.getValue(),imSlider.getValue()));
-            System.out.println(iterations);
         });
         
         draw(canvas, screenWidth, screenHeight, width, height, iterations, new Complex(reSlider.getValue(),imSlider.getValue()));
