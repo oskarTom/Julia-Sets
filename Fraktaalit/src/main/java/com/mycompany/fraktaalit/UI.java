@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -29,59 +30,52 @@ public class UI extends Application{
         double height = 2.67;
 
         Scanner scanner = new Scanner(System.in);
-        double Re = -0.8;
-        double Im = 0.156;
-        int iterations = 1000;
-        
-        Complex c;
-        /*
-        System.out.println("Syötä kompleksiluvun reaaliosa:");
-        Re = Double.parseDouble(scanner.nextLine());
-        System.out.println("Syötä kompleksiluvun imaginääriosa:");
-        Im = Double.parseDouble(scanner.nextLine());
-        System.out.println("Kuinka monta iteraatiota?");
-        iterations = Integer.parseInt(scanner.nextLine());
-        */
-        c = new Complex(Re,Im);
-        
-        //------------------------------------------------
-        //                    DRAWING
-        //------------------------------------------------
+        double Re = -0.68;
+        double Im = -0.299;
+        int iterations = 10000;
+        Complex c = new Complex(Re,Im);
         
         Canvas canvas = new Canvas(screenWidth,screenHeight);
         BorderPane setup = new BorderPane();
-        VBox menu = new VBox();
+        GridPane menu = new GridPane();
         
         menu.setPadding(new Insets(10));
         
         setup.setLeft(menu);
         setup.setCenter(canvas);
+        Slider imSlider = new Slider();
         
-        BorderPane reLayout = new BorderPane();
+        
         Slider reSlider = new Slider();
+        reSlider.setSnapToTicks(true);
         reSlider.setMin(-2);
         reSlider.setMax(1);
         reSlider.setValue(Re);
         reSlider.setShowTickLabels(true);
         reSlider.setShowTickMarks(true);
         reSlider.setMajorTickUnit(1);
+        reSlider.setMinorTickCount(5);
+        
+        reSlider.setBlockIncrement(0.01);
         Label reValue = new Label(""+Re);
-        reLayout.setLeft(new Label("Re: "));
-        reLayout.setCenter(reSlider);
-        reLayout.setRight(reValue);
-        menu.getChildren().add(reLayout);
+        menu.add(new Label("Re: "),1,1);
+        menu.add(reSlider,2,1);
+        menu.add(reValue,3,1);
         
         reSlider.valueProperty().addListener(e -> {
-            String newValue = reSlider.getValue()+"";
-            if(newValue.length() > 4) {
-                newValue = newValue.substring(0,4);
+            double newValue = Math.round(reSlider.getValue()*100.0)/100.0;
+            reSlider.setValue(newValue);
+            reValue.setText(newValue+"");
+            if(!c.equals(new Complex(newValue, imSlider.getValue()))){
+                c.setReal(newValue);
+                draw(canvas, screenWidth, screenHeight, width, height, iterations, c);
             }
-            reValue.setText(newValue);
-            //draw(canvas, screenWidth, screenHeight, width, height, iterations, new Complex(reSlider.getValue(),Im));
+            reSlider.setValue(newValue);
+        });
+        reSlider.setOnMouseReleased(e -> {
+            draw(canvas, screenWidth, screenHeight, width, height, iterations, new Complex(reSlider.getValue(),imSlider.getValue()));
         });
         
-        BorderPane imLayout = new BorderPane();
-        Slider imSlider = new Slider();
         imSlider.setMin(-1);
         imSlider.setMax(1);
         imSlider.setValue(Im);
@@ -89,42 +83,28 @@ public class UI extends Application{
         imSlider.setShowTickMarks(true);
         imSlider.setMajorTickUnit(1);
         Label imValue = new Label(""+Im);
-        imLayout.setLeft(new Label("Im: "));
-        imLayout.setCenter(imSlider);
-        imLayout.setRight(imValue);
-        menu.getChildren().add(imLayout);
+        menu.add(new Label("Im: "),1,2);
+        menu.add(imSlider,2,2);
+        menu.add(imValue,3,2);
+        //menu.getChildren().add(imLayout);
         
         imSlider.valueProperty().addListener(e -> {
-            String newValue = imSlider.getValue()+"";
-            if(newValue.length() > 4) {
-                newValue = newValue.substring(0,4);
+            double newValue = Math.round(imSlider.getValue()*100.0)/100.0;
+            imSlider.setValue(newValue);
+            imValue.setText(newValue+"");
+            if(!c.equals(new Complex(reSlider.getValue(), newValue))){
+                c.setImaginary(newValue);
+                draw(canvas, screenWidth, screenHeight, width, height, iterations, c);
             }
-            imValue.setText(newValue);
+            imSlider.setValue(newValue);
         });
         
-        Button drawButton = new Button("Draw");
-        drawButton.setOnAction(e -> {
+        imSlider.setOnMouseReleased(e -> {
             draw(canvas, screenWidth, screenHeight, width, height, iterations, new Complex(reSlider.getValue(),imSlider.getValue()));
+            System.out.println(iterations);
         });
-        menu.getChildren().add(drawButton);
         
-        PixelWriter pencil = canvas.getGraphicsContext2D().getPixelWriter();
-        
-        for(int x = 0; x < screenWidth; x++){
-            for(int y = 0; y < screenHeight; y++){
-                int test = escapeTest(new Complex(x*width/screenWidth-width/2, y*height/screenHeight-height/2), c, iterations);
-                if(test == 0){
-                    pencil.setColor(x, y, Color.BLACK);
-                }else{
-                    if(test<=100){
-                        pencil.setColor(x, y, Color.hsb(test*0.4+150,1,1,test*0.01-0.01));
-                    }else{
-                        pencil.setColor(x, y, Color.hsb(test*0.4+150,1,1));
-                    }
-                }
-            }
-        }
-        
+        draw(canvas, screenWidth, screenHeight, width, height, iterations, new Complex(reSlider.getValue(),imSlider.getValue()));
         
         Scene scene = new Scene(setup);
         
@@ -140,6 +120,9 @@ public class UI extends Application{
     
     public void draw(Canvas canvas, int screenWidth, int screenHeight, double width, double height, int iterations, Complex c){
         PixelWriter pencil = canvas.getGraphicsContext2D().getPixelWriter();
+        if(escapeTest(new Complex(0,0), c, iterations) == 0){
+            iterations = 50;
+        }
         for(int x = 0; x < screenWidth; x++){
             for(int y = 0; y < screenHeight; y++){
                 int test = escapeTest(new Complex(x*width/screenWidth-width/2, y*height/screenHeight-height/2), c, iterations);
