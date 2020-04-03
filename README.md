@@ -1,7 +1,7 @@
 ![Julia Set](https://github.com/oskarTom/ot-harjoitustyo/blob/master/images/Julia%202.png)
 
 # Julian joukot
-Ohjelma kuvaa syötetylle kompleksiluvulle vastaavan Julian joukon. Mielekkään Julian joukon saamiseksi on suotavaa valita kompleksiluku Mandelbrotin joukosta tai sen lähettyviltä. Iteraatioiksi kannattaa asettaa vähintään 1000.
+Ohjelma kuvaa syötetylle kompleksiluvulle vastaavan Julian joukon. Mielekkään Julian joukon saamiseksi on suotavaa valita kompleksiluku Mandelbrotin joukosta tai sen lähettyviltä.
 
 Esimerkkejä kompleksiluvun arvolle:
 
