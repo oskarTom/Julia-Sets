@@ -35,7 +35,6 @@
                 <configuration>
                     <excludes>
                         <exclude>com/mycompany/fraktaalit/ui/*</exclude>
-                        <exclude>com/mycompany/fraktaalit/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
