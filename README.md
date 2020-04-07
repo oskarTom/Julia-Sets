@@ -18,6 +18,8 @@ Projekti on toteutettu hakemistoon Fraktaalit.
 
 [Työaikakirjanpito](https://github.com/oskarTom/ot-harjoitustyo/blob/master/Dokumentointi/tuntikirjanpito.md)
 
+[Arkkitehtuurikuvaus](https://github.com/oskarTom/ot-harjoitustyo/blob/master/Dokumentointi/arkkitehtuuri.md)
+
 ## Komentorivitoiminnot
 ### Testit
 Testien suorittaminen toteutetaan komennolla
