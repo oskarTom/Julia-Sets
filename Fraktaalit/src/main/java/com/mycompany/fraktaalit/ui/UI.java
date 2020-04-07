@@ -1,5 +1,7 @@
-package com.mycompany.fraktaalit;
+package com.mycompany.fraktaalit.ui;
 
+import com.mycompany.fraktaalit.logic.Complex;
+import com.mycompany.fraktaalit.logic.JuliaLogic;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.geometry.Insets;
@@ -7,10 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
-import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**

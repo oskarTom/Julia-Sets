@@ -1,4 +1,6 @@
-import com.mycompany.fraktaalit.Complex;
+package testpackage;
+
+import com.mycompany.fraktaalit.logic.Complex;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
