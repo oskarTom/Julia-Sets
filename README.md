@@ -19,6 +19,7 @@ Projekti on toteutettu hakemistoon Fraktaalit.
 [Työaikakirjanpito](https://github.com/oskarTom/ot-harjoitustyo/blob/master/Dokumentointi/tuntikirjanpito.md)
 
 ## Komentorivitoiminnot
+### Testit
 Testien suorittaminen toteutetaan komennolla
 
     mvn test
@@ -26,3 +27,8 @@ Testikattavuusraportin luominen tapahtuu komennolla
 
     mvn test jacoco:report
 Kattavuusraporttia voi tarkastella avaamalla tiedosto *target/site/jacoco/index.html* selaimessa
+### Checkstyle
+Ckeckstyle tarkistus suoritetaan komennolla
+
+    mvn jxr:jxr checkstyle:checkstyle
+Tulokset näkyvät tiedostossa *target/site/checkstyle.html*

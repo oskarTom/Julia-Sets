@@ -9,4 +9,5 @@ Päivä | Aika | Mitä tein
 |  | 2h | Päivitin Java 11:een, tein tarvittavat konfiguraatiot ja testailin ohjelmaa laitoksen koneella
 2.4 | 1h | Lisäsin sliderit ja napin
 |  | 2h | Poistin napin. Kuva päivittyy nyt slidereita liikuttamalla. Iterointien määrä on nyt määritetty automaattisesti
-|yht| 12h 
+7.4 | 2h | Muutin pakkausrakennetta ja otin Checkstylen käyttöön 
+|yht| 14h 
