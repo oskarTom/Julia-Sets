@@ -32,6 +32,14 @@ Testikattavuusraportin luominen tapahtuu komennolla
 
     mvn test jacoco:report
 Kattavuusraporttia voi tarkastella avaamalla tiedosto *target/site/jacoco/index.html* selaimessa
+### Jar
+Jarin generointi onnistuu komennolla
+
+    mvn package
+    
+Jar luodaan kansioon *target/* ja sen voi suorittaa komennolla
+
+    java -jar target/Fraktaalit-1.0-SNAPSHOT.jar
 ### Checkstyle
 Ckeckstyle tarkistus suoritetaan komennolla
 
