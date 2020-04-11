@@ -11,4 +11,5 @@ Päivä | Aika | Mitä tein
 |  | 2h | Poistin napin. Kuva päivittyy nyt slidereita liikuttamalla. Iterointien määrä on nyt määritetty automaattisesti
 7.4 | 2h | Muutin pakkausrakennetta ja otin Checkstylen käyttöön 
 |  | 2h  | Loin arkkitehtuurikuvauksen ja lisäsin testejä
-|**yht**| **16h** 
+11.4| 20 min | Lisäsin mandelbrotin joukon
+|**yht**| **16h 20 min** 
