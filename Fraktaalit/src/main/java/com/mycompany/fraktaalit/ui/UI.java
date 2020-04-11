@@ -8,10 +8,12 @@ import static javafx.application.Application.launch;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -23,10 +25,10 @@ public class UI extends Application{
     
     @Override
     public void start(Stage primaryStage) throws Exception {
-        int screenWidth = 600;
-        int screenHeight = 400;
-        double width = 4;
-        double height = 2.67;
+        int screenWidth = 700;
+        int screenHeight = 500;
+        double width = 3.5;
+        double height = 2.5;
 
         double Re = 0;
         double Im = 0;
@@ -38,17 +40,42 @@ public class UI extends Application{
         
         Canvas mandelbrotCanvas = new Canvas(screenWidth,screenHeight);
         MandelbrotLogic mandelbrot = new MandelbrotLogic(mandelbrotCanvas);
-        mandelbrot.draw(width, height, 100000);
+        mandelbrot.draw(width, height, iterations);
+        
+        Label MandelReCoordinates = new Label("Re: ");
+        Label MandelImCoordinates = new Label("Im: ");
+        /*
+        HBox canvases = new HBox();
+        canvases.getChildren().add(juliaCanvas);
+        canvases.getChildren().add(mandelbrotCanvas);
+        ca*/
+        
+        GridPane canvases = new GridPane();
+        canvases.add(juliaCanvas, 1, 1);
+        canvases.add(mandelbrotCanvas, 2, 1);
+        canvases.add(MandelReCoordinates, 2, 2);
+        canvases.add(MandelImCoordinates, 2, 3);
+        
+        mandelbrotCanvas.setOnMouseMoved(e -> {
+            double x = e.getX();
+            double y = e.getY();
+            MandelReCoordinates.setText("Re: "+ (x * width / screenWidth - width * 5 / 8));
+            MandelImCoordinates.setText("Im: "+ (y * height / screenHeight - height / 2));
+        });
+        
+        mandelbrotCanvas.setOnMouseClicked(e -> {
+            c.setReal(e.getX() * width / screenWidth - width * 5 / 8);
+            c.setImaginary(e.getY() * height / screenHeight - height / 2);
+            julia.draw(width, height, iterations, c);
+        });
+        
         
         BorderPane setup = new BorderPane();
         GridPane menu = new GridPane();
         
         menu.setPadding(new Insets(10));
         
-        setup.setLeft(menu);
-        VBox canvases = new VBox();
-        canvases.getChildren().add(juliaCanvas);
-        canvases.getChildren().add(mandelbrotCanvas);
+        setup.setBottom(menu);
         setup.setCenter(canvases);
         Slider imSlider = new Slider();
         

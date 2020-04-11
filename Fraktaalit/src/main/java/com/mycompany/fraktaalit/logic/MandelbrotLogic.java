@@ -28,7 +28,7 @@ public class MandelbrotLogic {
         PixelWriter pencil = canvas.getGraphicsContext2D().getPixelWriter();
         for (int x = 0; x < screenWidth; x++) {
             for (int y = 0; y < screenHeight; y++) {
-                int test = escapeTest(new Complex(x * width / screenWidth - width / 2, y * height / screenHeight - height / 2), iterations);
+                int test = escapeTest(new Complex(x * width / screenWidth - width * 5 / 8, y * height / screenHeight - height / 2), iterations);
                 if (test == 0) {
                     pencil.setColor(x, y, Color.BLACK);
                 } else {
