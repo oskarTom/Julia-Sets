@@ -2,6 +2,7 @@ package com.mycompany.fraktaalit.ui;
 
 import com.mycompany.fraktaalit.logic.Complex;
 import com.mycompany.fraktaalit.logic.JuliaLogic;
+import com.mycompany.fraktaalit.logic.MandelbrotLogic;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.geometry.Insets;
@@ -11,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -26,13 +28,17 @@ public class UI extends Application{
         double width = 4;
         double height = 2.67;
 
-        double Re = -0.68;
-        double Im = -0.299;
+        double Re = 0;
+        double Im = 0;
         int iterations = 10000;
         Complex c = new Complex(Re,Im);
         
-        Canvas canvas = new Canvas(screenWidth,screenHeight);
-        JuliaLogic julia = new JuliaLogic(canvas);
+        Canvas juliaCanvas = new Canvas(screenWidth,screenHeight);
+        JuliaLogic julia = new JuliaLogic(juliaCanvas);
+        
+        Canvas mandelbrotCanvas = new Canvas(screenWidth,screenHeight);
+        MandelbrotLogic mandelbrot = new MandelbrotLogic(mandelbrotCanvas);
+        mandelbrot.draw(width, height, 100000);
         
         BorderPane setup = new BorderPane();
         GridPane menu = new GridPane();
@@ -40,7 +46,10 @@ public class UI extends Application{
         menu.setPadding(new Insets(10));
         
         setup.setLeft(menu);
-        setup.setCenter(canvas);
+        VBox canvases = new VBox();
+        canvases.getChildren().add(juliaCanvas);
+        canvases.getChildren().add(mandelbrotCanvas);
+        setup.setCenter(canvases);
         Slider imSlider = new Slider();
         
         
