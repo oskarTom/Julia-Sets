@@ -12,4 +12,4 @@ Päivä | Aika | Mitä tein
 7.4 | 2h | Muutin pakkausrakennetta ja otin Checkstylen käyttöön 
 |  | 2h  | Loin arkkitehtuurikuvauksen ja lisäsin testejä
 11.4| 20 min | Lisäsin mandelbrotin joukon
-|**yht**| **16h 20 min** 
+|**yht**| **16h** 
