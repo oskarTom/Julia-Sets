@@ -69,17 +69,24 @@ public class UI extends Application{
             julia.draw(width, height, iterations, c);
         });
         
+        mandelbrotCanvas.setOnMouseDragged(e -> {
+            c.setReal(e.getX() * width / screenWidth - width * 5 / 8);
+            c.setImaginary(e.getY() * height / screenHeight - height / 2);
+            julia.draw(width, height, iterations, c);
+        });
+        
         
         BorderPane setup = new BorderPane();
-        GridPane menu = new GridPane();
+        setup.setCenter(canvases);
         
+        /*
+        GridPane menu = new GridPane();
         menu.setPadding(new Insets(10));
         
         setup.setBottom(menu);
-        setup.setCenter(canvases);
+        
+        
         Slider imSlider = new Slider();
-        
-        
         Slider reSlider = new Slider();
         reSlider.setMin(-2);
         reSlider.setMax(1);
@@ -129,7 +136,7 @@ public class UI extends Application{
             }
             imSlider.setValue(newValue);
         });
-        
+        */
         julia.draw(width, height, iterations, c);
         
         Scene scene = new Scene(setup);
