@@ -6,7 +6,7 @@ Sovelluksen tarkoitus on kuvata Julian joukkoja graafisessa käyttöliittymäss�
 ## Jatkokehitysideoita
 Perusversion jälkeen ohjelmaa voidaan laajentaa esimerkiksi seuraavilla tavoilla:
 - [ ] Kuvatun joukon tallentaminen kuvatiedostoksi
-- [ ] Myös Mandelbrotin joukon kuvaaminen
+- [x] Myös Mandelbrotin joukon kuvaaminen
 - [ ] Zoomaus johonkin joukon alueeseen
 - [ ] Dynaaminen siirtymä yhdestä Julia joukosta toiseen
 - [ ] Kuvausten tallentaminen ja lataaminen
