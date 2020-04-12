@@ -44,6 +44,8 @@ public class UI extends Application{
         
         Label MandelReCoordinates = new Label("Re: ");
         Label MandelImCoordinates = new Label("Im: ");
+        
+        Label cValue = new Label("c = "+c.toString());
         /*
         HBox canvases = new HBox();
         canvases.getChildren().add(juliaCanvas);
@@ -53,6 +55,7 @@ public class UI extends Application{
         GridPane canvases = new GridPane();
         canvases.add(juliaCanvas, 1, 1);
         canvases.add(mandelbrotCanvas, 2, 1);
+        canvases.add(cValue, 1, 2);
         canvases.add(MandelReCoordinates, 2, 2);
         canvases.add(MandelImCoordinates, 2, 3);
         
@@ -60,19 +63,26 @@ public class UI extends Application{
             double x = e.getX();
             double y = e.getY();
             MandelReCoordinates.setText("Re: "+ (x * width / screenWidth - width * 5 / 8));
-            MandelImCoordinates.setText("Im: "+ (y * height / screenHeight - height / 2));
+            MandelImCoordinates.setText("Im: "+ (-y * height / screenHeight + height / 2));
         });
         
         mandelbrotCanvas.setOnMouseClicked(e -> {
             c.setReal(e.getX() * width / screenWidth - width * 5 / 8);
-            c.setImaginary(e.getY() * height / screenHeight - height / 2);
+            c.setImaginary(-e.getY() * height / screenHeight + height / 2);
             julia.draw(width, height, iterations, c);
+            cValue.setText("c = "+c.toString());
         });
         
         mandelbrotCanvas.setOnMouseDragged(e -> {
-            c.setReal(e.getX() * width / screenWidth - width * 5 / 8);
-            c.setImaginary(e.getY() * height / screenHeight - height / 2);
+            double x = e.getX();
+            double y = e.getY();
+            MandelReCoordinates.setText("Re: "+ (x * width / screenWidth - width * 5 / 8));
+            MandelImCoordinates.setText("Im: "+ (-y * height / screenHeight + height / 2));
+            
+            c.setReal(x * width / screenWidth - width * 5 / 8);
+            c.setImaginary(-y * height / screenHeight + height / 2);
             julia.draw(width, height, iterations, c);
+            cValue.setText("c = "+c.toString());
         });
         
         
