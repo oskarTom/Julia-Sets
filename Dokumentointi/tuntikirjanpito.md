@@ -12,4 +12,5 @@ Päivä | Aika | Mitä tein
 7.4 | 2h | Muutin pakkausrakennetta ja otin Checkstylen käyttöön 
 |  | 2h  | Loin arkkitehtuurikuvauksen ja lisäsin testejä
 11.4| 2h | Lisäsin mandelbrotin joukon, josta klikkaamalla voi valita kompleksiluvun. Poistin sliderit
+12.4| 30 min | Arvojen tunnistaminen Mandelbrotin joukosta ja valitun arvon näyttäminen Julian joukon alla
 |**yht**| **18h** 
