@@ -27,10 +27,10 @@ public class UI extends Application{
     
     @Override
     public void start(Stage primaryStage) throws Exception {
-        int screenWidth = 700;
-        int screenHeight = 500;
-        double width = 3.5;
-        double height = 2.5;
+        int screenWidth = 640;
+        int screenHeight = 360;
+        double width = 5;
+        double height = 2.8125;
 
         double Re = 0;
         double Im = 0;
