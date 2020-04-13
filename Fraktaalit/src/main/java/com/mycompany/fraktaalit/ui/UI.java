@@ -9,11 +9,13 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -46,18 +48,34 @@ public class UI extends Application{
         Label MandelImCoordinates = new Label("Im: ");
         
         Label cValue = new Label("c = "+c.toString());
-        /*
-        HBox canvases = new HBox();
-        canvases.getChildren().add(juliaCanvas);
-        canvases.getChildren().add(mandelbrotCanvas);
-        ca*/
+        
+        HBox buttons = new HBox();
+        Button saveButton = new Button("Save as png");
+        
+        buttons.getChildren().add(saveButton);
         
         GridPane canvases = new GridPane();
         canvases.add(juliaCanvas, 1, 1);
         canvases.add(mandelbrotCanvas, 2, 1);
         canvases.add(cValue, 1, 2);
+        canvases.add(buttons, 1, 3);
         canvases.add(MandelReCoordinates, 2, 2);
         canvases.add(MandelImCoordinates, 2, 3);
+        
+        saveButton.setOnAction(e -> {
+            Label saveLabel = new Label("Saving functionality here");
+            
+            StackPane saveLayout = new StackPane();
+            saveLayout.getChildren().add(saveLabel);
+            
+            Scene secondScene = new Scene(saveLayout, 230, 100);
+ 
+            Stage newWindow = new Stage();
+            newWindow.setTitle("Save Julia");
+            newWindow.setScene(secondScene);
+            newWindow.show();
+        });
+        
         
         mandelbrotCanvas.setOnMouseMoved(e -> {
             double x = e.getX();
@@ -85,68 +103,9 @@ public class UI extends Application{
             cValue.setText("c = "+c.toString());
         });
         
-        
         BorderPane setup = new BorderPane();
         setup.setCenter(canvases);
         
-        /*
-        GridPane menu = new GridPane();
-        menu.setPadding(new Insets(10));
-        
-        setup.setBottom(menu);
-        
-        
-        Slider imSlider = new Slider();
-        Slider reSlider = new Slider();
-        reSlider.setMin(-2);
-        reSlider.setMax(1);
-        reSlider.setValue(Re);
-        reSlider.setShowTickLabels(true);
-        reSlider.setShowTickMarks(true);
-        reSlider.setMajorTickUnit(1);
-        reSlider.setMinorTickCount(5);
-        
-        reSlider.setBlockIncrement(0.01);
-        Label reValue = new Label(""+Re);
-        menu.add(new Label("Re: "),1,1);
-        menu.add(reSlider,2,1);
-        menu.add(reValue,3,1);
-        
-        reSlider.valueProperty().addListener(e -> {
-            double newValue = Math.round(reSlider.getValue()*100.0)/100.0;
-            reSlider.setValue(newValue);
-            reValue.setText(newValue+"");
-            if(!c.equals(new Complex(newValue, imSlider.getValue()))){
-                c.setReal(newValue);
-                julia.draw(width, height, iterations, c);
-            }
-            reSlider.setValue(newValue);
-        });
-        
-        imSlider.setMin(-1);
-        imSlider.setMax(1);
-        imSlider.setValue(Im);
-        imSlider.setShowTickLabels(true);
-        imSlider.setShowTickMarks(true);
-        imSlider.setMajorTickUnit(1);
-        imSlider.setMinorTickCount(5);
-        imSlider.setBlockIncrement(0.01);
-        Label imValue = new Label(""+Im);
-        menu.add(new Label("Im: "),1,2);
-        menu.add(imSlider,2,2);
-        menu.add(imValue,3,2);
-        
-        imSlider.valueProperty().addListener(e -> {
-            double newValue = Math.round(imSlider.getValue()*100.0)/100.0;
-            imSlider.setValue(newValue);
-            imValue.setText(newValue+"");
-            if(!c.equals(new Complex(reSlider.getValue(), newValue))){
-                c.setImaginary(newValue);
-                julia.draw(width, height, iterations, c);
-            }
-            imSlider.setValue(newValue);
-        });
-        */
         julia.draw(width, height, iterations, c);
         
         Scene scene = new Scene(setup);

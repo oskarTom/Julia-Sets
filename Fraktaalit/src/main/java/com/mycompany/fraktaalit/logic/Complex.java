@@ -55,12 +55,13 @@ public class Complex {
     
     @Override
     public String toString() {
-        if (this.im == 0){
-            return this.re+"";
-        }
         if (this.im < 0) {
             return ""+this.re + this.im +"i";
         }
+        if (this.im == 0){
+            return this.re+"";
+        }
+        
         return this.re + "+" + this.im + "i";
     }
 }
