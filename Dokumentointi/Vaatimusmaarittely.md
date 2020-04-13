@@ -11,3 +11,4 @@ Perusversion jälkeen ohjelmaa voidaan laajentaa esimerkiksi seuraavilla tavoill
 - [ ] Zoomaus johonkin joukon alueeseen
 - [ ] Dynaaminen siirtymä yhdestä Julia joukosta toiseen
 - [ ] Kuvausten tallentaminen ja lataaminen
+- [ ] Joukon värien vaihtaminen
