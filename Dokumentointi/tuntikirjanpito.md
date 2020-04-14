@@ -13,4 +13,6 @@ Päivä | Aika | Mitä tein
 |  | 2h  | Loin arkkitehtuurikuvauksen ja lisäsin testejä
 11.4| 2h | Lisäsin mandelbrotin joukon, josta klikkaamalla voi valita kompleksiluvun. Poistin sliderit
 12.4| 30 min | Arvojen tunnistaminen Mandelbrotin joukosta ja valitun arvon näyttäminen Julian joukon alla
-|**yht**| **18h** 
+14.4| 30 min | Lisäsin tallennus napin ja uuden ikkunan tallentamista varten (ei toimi vielä)
+15.4| 2h | Mandelbrotin joukkoon voi nyt zoomata
+|**yht**| **21h** 
