@@ -10,6 +10,6 @@ Perusversion jälkeen ohjelmaa voidaan laajentaa esimerkiksi seuraavilla tavoill
 - [x] Kompleksiluvun *c* voi valita suoraan Mandelbrotin joukosta
 - [x] Zoomaus Mandelbrotin joukkoon
 - [ ] Zoomaus Julia joukkoon
-- [ ] Dynaaminen siirtymä yhdestä Julia joukosta toiseen
+- [ ] ~~Dynaaminen siirtymä yhdestä Julia joukosta toiseen~~
 - [ ] Kuvausten tallentaminen ja lataaminen
 - [ ] Joukon värien vaihtaminen
