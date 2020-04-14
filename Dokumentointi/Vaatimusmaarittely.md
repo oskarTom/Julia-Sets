@@ -8,7 +8,8 @@ Perusversion jälkeen ohjelmaa voidaan laajentaa esimerkiksi seuraavilla tavoill
 - [ ] Kuvatun joukon tallentaminen kuvatiedostoksi
 - [x] Myös Mandelbrotin joukon kuvaaminen
 - [x] Kompleksiluvun *c* voi valita suoraan Mandelbrotin joukosta
-- [x] Zoomaus johonkin joukon alueeseen
+- [x] Zoomaus Mandelbrotin joukkoon
+- [ ] Zoomaus Julia joukkoon
 - [ ] Dynaaminen siirtymä yhdestä Julia joukosta toiseen
 - [ ] Kuvausten tallentaminen ja lataaminen
 - [ ] Joukon värien vaihtaminen
