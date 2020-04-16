@@ -14,6 +14,7 @@ Projekti on toteutettu hakemistoon Fraktaalit.
 
 ## Releaset
 [v1.1](https://github.com/oskarTom/ot-harjoitustyo/releases/tag/v1.1)
+
 [v1.0](https://github.com/oskarTom/ot-harjoitustyo/releases/tag/v1.0)
 
 ## Komentorivitoiminnot
