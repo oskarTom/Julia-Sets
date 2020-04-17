@@ -31,8 +31,7 @@ public class UI extends Application{
     public void start(Stage primaryStage) throws Exception {
         int screenWidth = 640;
         int screenHeight = 360;
-        Zoom zoom = new Zoom(5, 2.8125, -1);
-        Zoom zoomJulia = new Zoom(5, 2.8125);
+        
         
         double Re = 0;
         double Im = 0;
@@ -42,9 +41,13 @@ public class UI extends Application{
         Canvas juliaCanvas = new Canvas(screenWidth,screenHeight);
         JuliaLogic julia = new JuliaLogic(juliaCanvas);
         
-        Canvas mandelbrotCanvas = new Canvas(screenWidth,screenHeight);
+        Canvas mandelbrotCanvas = new Canvas(480,screenHeight);
         MandelbrotLogic mandelbrot = new MandelbrotLogic(mandelbrotCanvas);
-        mandelbrot.draw(zoom, iterations);
+        
+        Zoom zoomMandelbrot = new Zoom(3.5, 10.5/4, -0.5, mandelbrotCanvas);
+        Zoom zoomJulia = new Zoom(5, 2.8125);
+        
+        mandelbrot.draw(zoomMandelbrot, iterations);
         
         Label MandelReCoordinates = new Label("Re: ");
         Label MandelImCoordinates = new Label("Im: ");
@@ -84,19 +87,19 @@ public class UI extends Application{
         mandelbrotCanvas.setOnMouseMoved(e -> {
             double x = e.getX();
             double y = e.getY();
-            MandelReCoordinates.setText("Re: "+ zoom.xRange(x));
-            MandelImCoordinates.setText("Im: "+ zoom.yRange(y));
+            MandelReCoordinates.setText("Re: "+ zoomMandelbrot.xRange(x));
+            MandelImCoordinates.setText("Im: "+ zoomMandelbrot.yRange(y));
         });
         
         mandelbrotCanvas.setOnMouseClicked(e -> {
             double x = e.getX();
             double y = e.getY();
             if(zoomButton.isSelected()){
-                zoom.zoom(2, x, y);
-                mandelbrot.draw(zoom, iterations);
+                zoomMandelbrot.zoom(2, x, y);
+                mandelbrot.draw(zoomMandelbrot, iterations);
             }else{
-                c.setReal(zoom.xRange(x));
-                c.setImaginary(zoom.yRange(y));
+                c.setReal(zoomMandelbrot.xRange(x));
+                c.setImaginary(zoomMandelbrot.yRange(y));
                 julia.draw(zoomJulia.getWidth(), zoomJulia.getHeight(), iterations, c);
                 cValue.setText("c = "+c.toString());
             }
@@ -106,12 +109,12 @@ public class UI extends Application{
         mandelbrotCanvas.setOnMouseDragged(e -> {
             double x = e.getX();
             double y = e.getY();
-            MandelReCoordinates.setText("Re: "+ zoom.xRange(x));
-            MandelImCoordinates.setText("Im: "+ zoom.yRange(y));
+            MandelReCoordinates.setText("Re: "+ zoomMandelbrot.xRange(x));
+            MandelImCoordinates.setText("Im: "+ zoomMandelbrot.yRange(y));
 
             if(!zoomButton.isSelected()){
-                c.setReal(zoom.xRange(x));
-                c.setImaginary(zoom.yRange(y));
+                c.setReal(zoomMandelbrot.xRange(x));
+                c.setImaginary(zoomMandelbrot.yRange(y));
                 julia.draw(zoomJulia.getWidth(), zoomJulia.getHeight(), iterations, c);
                 cValue.setText("c = "+c.toString());
             }
