@@ -51,13 +51,28 @@ public class Zoom {
         return this.yOffset;
     }
     
+    public void setWidth(double width) {
+        this.width = width;
+    }
+    
+    public void setHeight(double height) {
+        this.height = height;
+    }
+    
+    public void setXOffset(double xOffset) {
+        this.xOffset = xOffset;
+    }
+    
+    public void setYOffset(double yOffset) {
+        this.yOffset = yOffset;
+    }
+    
     public void zoom(double multiplier, double x, double y){
         this.xOffset = xRange(x);
         this.yOffset = yRange(y);
         this.width = this.width * (1 / multiplier);
         this.height = this.height * (1 / multiplier);
     }
-    
     
     public double xRange(double x){
         return x * width / screenWidth - width / 2 + xOffset;

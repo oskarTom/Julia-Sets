@@ -29,10 +29,12 @@ public class UI extends Application{
     
     @Override
     public void start(Stage primaryStage) throws Exception {
+        
+        //---------------------------------------------------
+        //                  INITALIZING
+        //---------------------------------------------------
         int screenWidth = 640;
         int screenHeight = 360;
-        
-        
         double Re = 0;
         double Im = 0;
         int iterations = 5000;
@@ -45,6 +47,7 @@ public class UI extends Application{
         MandelbrotLogic mandelbrot = new MandelbrotLogic(mandelbrotCanvas);
         
         Zoom zoomMandelbrot = new Zoom(3.5, 10.5/4, -0.5, mandelbrotCanvas);
+        Zoom initialZoomMandelbrot = new Zoom(3.5, 10.5/4, -0.5, mandelbrotCanvas);
         Zoom zoomJulia = new Zoom(5, 2.8125);
         
         mandelbrot.draw(zoomMandelbrot, iterations);
@@ -57,6 +60,7 @@ public class UI extends Application{
         HBox buttons = new HBox();
         Button saveButton = new Button("Save as png");
         ToggleButton zoomButton = new ToggleButton("Zoom");
+        Button resetZoom = new Button("Reset Zoom");
         
         buttons.getChildren().add(saveButton);
         
@@ -67,7 +71,15 @@ public class UI extends Application{
         canvases.add(buttons, 1, 3);
         canvases.add(MandelReCoordinates, 2, 2);
         canvases.add(MandelImCoordinates, 2, 3);
-        canvases.add(zoomButton, 2, 4);
+        
+        HBox mandelButtons = new HBox();
+        mandelButtons.getChildren().add(zoomButton);
+        mandelButtons.getChildren().add(resetZoom);
+        canvases.add(mandelButtons, 2, 4);
+        
+        //---------------------------------------------------
+        //                  ACTIONS
+        //---------------------------------------------------
         
         saveButton.setOnAction(e -> {
             Label saveLabel = new Label("Saving functionality here");
@@ -119,6 +131,18 @@ public class UI extends Application{
                 cValue.setText("c = "+c.toString());
             }
         });
+        
+        resetZoom.setOnAction(e -> {
+            zoomMandelbrot.setHeight(initialZoomMandelbrot.getHeight());
+            zoomMandelbrot.setWidth(initialZoomMandelbrot.getWidth());
+            zoomMandelbrot.setXOffset(initialZoomMandelbrot.getXOffset());
+            zoomMandelbrot.setYOffset(initialZoomMandelbrot.getYOffset());
+            mandelbrot.draw(zoomMandelbrot, iterations);
+        });
+        
+        //---------------------------------------------------
+        //                  FINAL SETUP
+        //---------------------------------------------------
         
         BorderPane setup = new BorderPane();
         setup.setCenter(canvases);
