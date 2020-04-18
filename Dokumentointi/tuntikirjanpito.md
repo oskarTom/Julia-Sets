@@ -15,4 +15,5 @@ Päivä | Aika | Mitä tein
 12.4| 30 min | Arvojen tunnistaminen Mandelbrotin joukosta ja valitun arvon näyttäminen Julian joukon alla
 14.4| 30 min | Lisäsin tallennus napin ja uuden ikkunan tallentamista varten (ei toimi vielä)
 15.4| 2h | Mandelbrotin joukkoon voi nyt zoomata
-|**yht**| **21h** 
+18.4| 15 min | Zoomauksen kumoaminen lisätty
+|**yht**| **21h 15min** 
