@@ -1,7 +1,7 @@
 ![Julia Set](https://github.com/oskarTom/ot-harjoitustyo/blob/master/images/Julia%202.png)
 
 # Julian joukot
-Ohjelma kuvaa valitulle kompleksiluvulle vastaavan Julian joukon. Kompleksiluku valitaan painamalla jotakin pistettä Mandelbrotin joukosta tai sen lähettyviltä.
+Ohjelma kuvaa valitulle kompleksiluvulle vastaavan Julian joukon. Kompleksiluku valitaan painamalla jotakin pistettä Mandelbrotin joukosta tai sen lähettyviltä. Julian joukossa on arvoja vain jos valittu kompleksiluku on Mandelbrotin joukossa.
 
 Projekti on toteutettu hakemistoon Fraktaalit.
 
