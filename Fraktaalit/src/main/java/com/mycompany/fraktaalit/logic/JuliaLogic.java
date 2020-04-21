@@ -24,9 +24,7 @@ public class JuliaLogic {
         double width = zoom.getWidth();
         double height = zoom.getHeight();
         PixelWriter pencil = canvas.getGraphicsContext2D().getPixelWriter();
-        if (escapeTest(new Complex(0, 0), c, iterations) == 0) {
-            iterations = 50;
-        }
+        iterations = (escapeTest(new Complex(0, 0), c, iterations) == 0) ? 50 : iterations;
         for (int x = 0; x < screenWidth; x++) {
             for (int y = 0; y < screenHeight; y++) {
                 int test = escapeTest(new Complex(x * width / screenWidth - width / 2, y * height / screenHeight - height / 2), c, iterations);
