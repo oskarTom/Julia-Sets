@@ -3,7 +3,6 @@ package com.mycompany.fraktaalit.ui;
 import com.mycompany.fraktaalit.logic.Complex;
 import com.mycompany.fraktaalit.logic.JuliaLogic;
 import com.mycompany.fraktaalit.logic.MandelbrotLogic;
-import com.mycompany.fraktaalit.logic.Zoom;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.geometry.Insets;
@@ -112,7 +111,7 @@ public class UI extends Application{
             }else{
                 c.setReal(zoomMandelbrot.xRange(x));
                 c.setImaginary(zoomMandelbrot.yRange(y));
-                julia.draw(zoomJulia.getWidth(), zoomJulia.getHeight(), iterations, c);
+                julia.draw(zoomJulia, iterations, c);
                 cValue.setText("c = "+c.toString());
             }
             
@@ -127,7 +126,7 @@ public class UI extends Application{
             if(!zoomButton.isSelected()){
                 c.setReal(zoomMandelbrot.xRange(x));
                 c.setImaginary(zoomMandelbrot.yRange(y));
-                julia.draw(zoomJulia.getWidth(), zoomJulia.getHeight(), iterations, c);
+                julia.draw(zoomJulia, iterations, c);
                 cValue.setText("c = "+c.toString());
             }
         });
@@ -147,7 +146,7 @@ public class UI extends Application{
         BorderPane setup = new BorderPane();
         setup.setCenter(canvases);
         
-        julia.draw(zoomJulia.getWidth(), zoomJulia.getHeight(), iterations, c);
+        julia.draw(zoomJulia, iterations, c);
         
         Scene scene = new Scene(setup);
         

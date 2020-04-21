@@ -5,6 +5,7 @@
  */
 package com.mycompany.fraktaalit.logic;
 
+import com.mycompany.fraktaalit.ui.Zoom;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.paint.Color;

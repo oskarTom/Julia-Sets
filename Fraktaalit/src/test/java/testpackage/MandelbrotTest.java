@@ -7,6 +7,7 @@ package testpackage;
 
 import com.mycompany.fraktaalit.logic.Complex;
 import com.mycompany.fraktaalit.logic.JuliaLogic;
+import com.mycompany.fraktaalit.logic.MandelbrotLogic;
 import javafx.scene.canvas.Canvas;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,25 +20,25 @@ import static org.junit.Assert.*;
  *
  * @author tomos
  */
-public class JuliaLogicTest {
+public class MandelbrotTest {
     
     private Canvas canvas;
-    private JuliaLogic julia;
+    private MandelbrotLogic logic;
     
-    public JuliaLogicTest() {
+    public MandelbrotTest() {
         canvas = new Canvas();
-        julia = new JuliaLogic(canvas);
+        logic = new MandelbrotLogic(canvas);
     }
+
     
     @Test
     public void doesntEscape(){
         Complex c = new Complex(0, 0);
-        assertEquals(julia.escapeTest(new Complex(0,0), c, 10000),0);
+        assertEquals(logic.escapeTest(c, 10000),0);
     }
     
     @Test
     public void escapes(){
-        Complex c = new Complex(0, 1);
-        assertTrue(julia.escapeTest(new Complex(-1.5,0.01), c, 10000) > 0);
-    }
-}
+        Complex c = new Complex(-1.5, 0.01);
+        assertTrue(logic.escapeTest(c, 10000) > 0);
+    }}

@@ -1,5 +1,6 @@
 package com.mycompany.fraktaalit.logic;
 
+import com.mycompany.fraktaalit.ui.Zoom;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.paint.Color;
@@ -19,7 +20,9 @@ public class JuliaLogic {
         this.screenHeight = (int) canvas.getHeight();
     }
     
-    public void draw(double width, double height, int iterations, Complex c) {
+    public void draw(Zoom zoom, int iterations, Complex c) {
+        double width = zoom.getWidth();
+        double height = zoom.getHeight();
         PixelWriter pencil = canvas.getGraphicsContext2D().getPixelWriter();
         if (escapeTest(new Complex(0, 0), c, iterations) == 0) {
             iterations = 50;
