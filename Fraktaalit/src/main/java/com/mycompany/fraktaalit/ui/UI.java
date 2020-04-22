@@ -18,16 +18,21 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Popup;
+import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
  * @author tomos
  */
 public class UI extends Application{
-    
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+        //loadWindow.initStyle(StageStyle.UNDECORATED);
+        
         
         //---------------------------------------------------
         //                  INITALIZING
@@ -36,7 +41,7 @@ public class UI extends Application{
         int screenHeight = 360;
         double Re = 0;
         double Im = 0;
-        int iterations = 5000;
+        int iterations = 1000; //default: 5000
         Complex c = new Complex(Re,Im);
         
         Canvas juliaCanvas = new Canvas(screenWidth,screenHeight);
@@ -53,6 +58,9 @@ public class UI extends Application{
         
         Label MandelReCoordinates = new Label("Re: ");
         Label MandelImCoordinates = new Label("Im: ");
+        VBox coordinates = new VBox();
+        coordinates.getChildren().add(MandelReCoordinates);
+        coordinates.getChildren().add(MandelImCoordinates);
         
         Label cValue = new Label("c = "+c.toString());
         
@@ -66,16 +74,32 @@ public class UI extends Application{
         GridPane canvases = new GridPane();
         canvases.add(juliaCanvas, 1, 1);
         canvases.add(mandelbrotCanvas, 2, 1);
-        canvases.add(cValue, 1, 2);
-        canvases.add(buttons, 1, 3);
-        canvases.add(MandelReCoordinates, 2, 2);
-        canvases.add(MandelImCoordinates, 2, 3);
+        
+        
+        BorderPane juliaMenu = new BorderPane();
+        juliaMenu.setLeft(cValue);
+        juliaMenu.setRight(buttons);
+        canvases.add(juliaMenu, 1, 2);
+        
+        
         
         HBox mandelButtons = new HBox();
         mandelButtons.getChildren().add(zoomButton);
         mandelButtons.getChildren().add(resetZoom);
-        canvases.add(mandelButtons, 2, 4);
         
+        BorderPane mandelbrotMenu = new BorderPane();
+        mandelbrotMenu.setLeft(coordinates);
+        mandelbrotMenu.setRight(mandelButtons);
+        canvases.add(mandelbrotMenu, 2, 2);
+        
+        //---------------------------------------------------
+        //                  POPUP TEST
+        //---------------------------------------------------
+        /*
+        final Popup popup = new Popup(); 
+        //popup.setX(0); popup.setY(0);
+        popup.getContent().add(MandelReCoordinates);
+        */
         //---------------------------------------------------
         //                  ACTIONS
         //---------------------------------------------------
@@ -137,21 +161,24 @@ public class UI extends Application{
             zoomMandelbrot.setXOffset(initialZoomMandelbrot.getXOffset());
             zoomMandelbrot.setYOffset(initialZoomMandelbrot.getYOffset());
             mandelbrot.draw(zoomMandelbrot, iterations);
+            zoomButton.setSelected(false);
         });
+        
+        
         
         //---------------------------------------------------
         //                  FINAL SETUP
         //---------------------------------------------------
-        
         BorderPane setup = new BorderPane();
         setup.setCenter(canvases);
         
         julia.draw(zoomJulia, iterations, c);
         
         Scene scene = new Scene(setup);
-        
+        scene.getStylesheets().add("dark.css");
         primaryStage.setScene(scene);
         primaryStage.setTitle("Julia Sets");
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
     
