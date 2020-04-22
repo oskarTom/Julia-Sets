@@ -18,4 +18,5 @@ Päivä | Aika | Mitä tein
 18.4| 15 min | Zoomauksen kumoaminen lisätty
 21.4| 2h | Lisäsin testejä, sekvenssikaavion ja korjasin checkstyle virheet
 22.4| 2h | Päivitin graafista käyttöliittymää
+|  | 3h | Poistin zoom napin. Nyt voi zoomata hiirirullalla tai kahdella sormella touchpadilla
 |**yht**| **25h 15min** 
