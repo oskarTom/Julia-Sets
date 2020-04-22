@@ -39,15 +39,16 @@ public class UI extends Application{
         //---------------------------------------------------
         int screenWidth = 640;
         int screenHeight = 360;
+        int mandelbrotScreenWidth = 480;
         double Re = 0;
         double Im = 0;
-        int iterations = 1000; //default: 5000
+        int iterations = 2000; //default: 5000
         Complex c = new Complex(Re,Im);
         
         Canvas juliaCanvas = new Canvas(screenWidth,screenHeight);
         JuliaLogic julia = new JuliaLogic(juliaCanvas);
         
-        Canvas mandelbrotCanvas = new Canvas(480,screenHeight);
+        Canvas mandelbrotCanvas = new Canvas(mandelbrotScreenWidth, screenHeight);
         MandelbrotLogic mandelbrot = new MandelbrotLogic(mandelbrotCanvas);
         
         Zoom zoomMandelbrot = new Zoom(3.5, 10.5/4, -0.5, mandelbrotCanvas);
@@ -153,6 +154,18 @@ public class UI extends Application{
                 julia.draw(zoomJulia, iterations, c);
                 cValue.setText("c = "+c.toString());
             }
+        });
+        
+        mandelbrotCanvas.setOnScroll(e -> {
+            double x = e.getX();
+            double y = e.getY();
+            double delta = e.getDeltaY();
+            if (delta >= 0) {
+                zoomMandelbrot.zoom(delta*0.05, x, y);
+            } else {
+                zoomMandelbrot.zoom(delta*0.05, mandelbrotScreenWidth-x, screenHeight-y);
+            }
+            mandelbrot.draw(zoomMandelbrot, iterations);
         });
         
         resetZoom.setOnAction(e -> {

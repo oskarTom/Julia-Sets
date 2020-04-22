@@ -70,8 +70,13 @@ public class Zoom {
     public void zoom(double multiplier, double x, double y) {
         this.xOffset = xRange(x);
         this.yOffset = yRange(y);
-        this.width = this.width * (1 / multiplier);
-        this.height = this.height * (1 / multiplier);
+        if (multiplier > 0) {
+            this.width = this.width * (1 / multiplier);
+            this.height = this.height * (1 / multiplier);
+        } else if (multiplier < 0) {
+            this.width = this.width * -multiplier;
+            this.height = this.height * -multiplier;
+        }
     }
     
     public double xRange(double x) {
