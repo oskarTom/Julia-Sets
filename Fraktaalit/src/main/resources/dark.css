@@ -18,6 +18,9 @@
 .button:hover {
     -fx-background-color: secondary;
 }
+.button:armed {
+    -fx-background-color: darkest;
+}
 .toggle-button {
     -fx-background-color: primary;
     -fx-text-fill: primarytext;

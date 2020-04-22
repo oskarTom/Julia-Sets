@@ -153,12 +153,11 @@ public class UI extends Application{
             double y = e.getY();
             double delta = e.getDeltaY();
             if (delta >= 0) {
-                zoomMandelbrot.zoom(delta/32.0, x, y);
+                zoomMandelbrot.zoom(delta/32, x, y);
             } else {
-                zoomMandelbrot.zoom(delta/32.0, mandelbrotScreenWidth-x, screenHeight-y);
+                zoomMandelbrot.zoom(delta/32, mandelbrotScreenWidth-x, screenHeight-y);
             }
             mandelbrot.draw(zoomMandelbrot, iterations);
-            System.out.println(delta);
         });
         
         resetZoom.setOnAction(e -> {
