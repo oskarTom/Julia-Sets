@@ -177,7 +177,17 @@ public class UI extends Application{
             zoomButton.setSelected(false);
         });
         
-        
+        juliaCanvas.setOnScroll(e -> {
+            double x = e.getX();
+            double y = e.getY();
+            double delta = e.getDeltaY();
+            if (delta >= 0) {
+                zoomJulia.zoom(delta*0.05, x, y);
+            } else {
+                zoomJulia.zoom(delta*0.05, screenWidth-x, screenHeight-y);
+            }
+            julia.draw(zoomJulia, iterations, c);
+        });
         
         //---------------------------------------------------
         //                  FINAL SETUP
