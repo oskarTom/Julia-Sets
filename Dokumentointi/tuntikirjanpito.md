@@ -17,4 +17,5 @@ Päivä | Aika | Mitä tein
 15.4| 2h | Mandelbrotin joukkoon voi nyt zoomata
 18.4| 15 min | Zoomauksen kumoaminen lisätty
 21.4| 2h | Lisäsin testejä, sekvenssikaavion ja korjasin checkstyle virheet
-|**yht**| **23h 15min** 
+22.4| 2h | Päivitin graafista käyttöliittymää
+|**yht**| **25h 15min** 
