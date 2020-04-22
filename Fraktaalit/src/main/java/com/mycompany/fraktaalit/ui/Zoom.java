@@ -68,14 +68,14 @@ public class Zoom {
     }
     
     public void zoom(double multiplier, double x, double y) {
-        this.xOffset = xRange(x);
-        this.yOffset = yRange(y);
         if (multiplier > 0) {
-            this.width = this.width * (1 / multiplier);
-            this.height = this.height * (1 / multiplier);
+            this.xOffset = xRange(x);
+            this.yOffset = yRange(y);
+            this.width = this.width * (1 / (multiplier + 1));
+            this.height = this.height * (1 / (multiplier + 1));
         } else if (multiplier < 0) {
-            this.width = this.width * -multiplier;
-            this.height = this.height * -multiplier;
+            this.width = this.width * (-multiplier+1);
+            this.height = this.height * (-multiplier+1);
         }
     }
     

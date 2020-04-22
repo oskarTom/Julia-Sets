@@ -5,7 +5,6 @@ import com.mycompany.fraktaalit.logic.JuliaLogic;
 import com.mycompany.fraktaalit.logic.MandelbrotLogic;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -54,6 +53,7 @@ public class UI extends Application{
         Zoom zoomMandelbrot = new Zoom(3.5, 10.5/4, -0.5, mandelbrotCanvas);
         Zoom initialZoomMandelbrot = new Zoom(3.5, 10.5/4, -0.5, mandelbrotCanvas);
         Zoom zoomJulia = new Zoom(5, 2.8125);
+        Zoom initialZoomJulia = new Zoom(5, 2.8125);
         
         mandelbrot.draw(zoomMandelbrot, iterations);
         
@@ -67,10 +67,11 @@ public class UI extends Application{
         
         HBox buttons = new HBox();
         Button saveButton = new Button("Save as png");
-        ToggleButton zoomButton = new ToggleButton("Zoom");
+        Button resetJuliaZoom = new Button("Reset Zoom");
         Button resetZoom = new Button("Reset Zoom");
         
         buttons.getChildren().add(saveButton);
+        buttons.getChildren().add(resetJuliaZoom);
         
         GridPane canvases = new GridPane();
         canvases.add(juliaCanvas, 1, 1);
@@ -80,12 +81,12 @@ public class UI extends Application{
         BorderPane juliaMenu = new BorderPane();
         juliaMenu.setLeft(cValue);
         juliaMenu.setRight(buttons);
+        //juliaMenu.setPadding(new Insets());
         canvases.add(juliaMenu, 1, 2);
         
         
         
         HBox mandelButtons = new HBox();
-        mandelButtons.getChildren().add(zoomButton);
         mandelButtons.getChildren().add(resetZoom);
         
         BorderPane mandelbrotMenu = new BorderPane();
@@ -130,16 +131,10 @@ public class UI extends Application{
         mandelbrotCanvas.setOnMouseClicked(e -> {
             double x = e.getX();
             double y = e.getY();
-            if(zoomButton.isSelected()){
-                zoomMandelbrot.zoom(2, x, y);
-                mandelbrot.draw(zoomMandelbrot, iterations);
-            }else{
-                c.setReal(zoomMandelbrot.xRange(x));
-                c.setImaginary(zoomMandelbrot.yRange(y));
-                julia.draw(zoomJulia, iterations, c);
-                cValue.setText("c = "+c.toString());
-            }
-            
+            c.setReal(zoomMandelbrot.xRange(x));
+            c.setImaginary(zoomMandelbrot.yRange(y));
+            julia.draw(zoomJulia, iterations, c);
+            cValue.setText("c = "+c.toString());        
         });
         
         mandelbrotCanvas.setOnMouseDragged(e -> {
@@ -147,13 +142,10 @@ public class UI extends Application{
             double y = e.getY();
             MandelReCoordinates.setText("Re: "+ zoomMandelbrot.xRange(x));
             MandelImCoordinates.setText("Im: "+ zoomMandelbrot.yRange(y));
-
-            if(!zoomButton.isSelected()){
-                c.setReal(zoomMandelbrot.xRange(x));
-                c.setImaginary(zoomMandelbrot.yRange(y));
-                julia.draw(zoomJulia, iterations, c);
-                cValue.setText("c = "+c.toString());
-            }
+            c.setReal(zoomMandelbrot.xRange(x));
+            c.setImaginary(zoomMandelbrot.yRange(y));
+            julia.draw(zoomJulia, iterations, c);
+            cValue.setText("c = "+c.toString());
         });
         
         mandelbrotCanvas.setOnScroll(e -> {
@@ -166,6 +158,7 @@ public class UI extends Application{
                 zoomMandelbrot.zoom(delta*0.05, mandelbrotScreenWidth-x, screenHeight-y);
             }
             mandelbrot.draw(zoomMandelbrot, iterations);
+            System.out.println(delta);
         });
         
         resetZoom.setOnAction(e -> {
@@ -174,7 +167,6 @@ public class UI extends Application{
             zoomMandelbrot.setXOffset(initialZoomMandelbrot.getXOffset());
             zoomMandelbrot.setYOffset(initialZoomMandelbrot.getYOffset());
             mandelbrot.draw(zoomMandelbrot, iterations);
-            zoomButton.setSelected(false);
         });
         
         juliaCanvas.setOnScroll(e -> {
@@ -186,6 +178,14 @@ public class UI extends Application{
             } else {
                 zoomJulia.zoom(delta*0.05, screenWidth-x, screenHeight-y);
             }
+            julia.draw(zoomJulia, iterations, c);
+        });
+        
+        resetJuliaZoom.setOnAction(e -> {
+            zoomJulia.setHeight(initialZoomJulia.getHeight());
+            zoomJulia.setWidth(initialZoomJulia.getWidth());
+            zoomJulia.setXOffset(initialZoomJulia.getXOffset());
+            zoomJulia.setYOffset(initialZoomJulia.getYOffset());
             julia.draw(zoomJulia, iterations, c);
         });
         
