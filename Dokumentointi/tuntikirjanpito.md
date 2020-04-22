@@ -19,4 +19,5 @@ Päivä | Aika | Mitä tein
 21.4| 2h | Lisäsin testejä, sekvenssikaavion ja korjasin checkstyle virheet
 22.4| 2h | Päivitin graafista käyttöliittymää
 |  | 3h | Poistin zoom napin. Nyt voi zoomata hiirirullalla tai kahdella sormella touchpadilla
+|  | 2h | Korjasin zoomauksessa ilmeneviä ongelmia
 |**yht**| **28h 15min** 
