@@ -68,9 +68,9 @@ public class Zoom {
     }
     
     public void zoom(double multiplier, double x, double y) {
-        if (multiplier > 0) {
-            this.xOffset = xRange(x);
-            this.yOffset = yRange(y);
+        if (multiplier > 0 && multiplier < 10) {
+            this.xOffset = xRangeCenter(x)*(multiplier)+ xOffset;
+            this.yOffset = yRangeCenter(y)*(multiplier) + yOffset;
             this.width = this.width * (1 / (multiplier + 1));
             this.height = this.height * (1 / (multiplier + 1));
         } else if (multiplier < 0) {
@@ -83,7 +83,15 @@ public class Zoom {
         return x * width / screenWidth - width / 2 + xOffset;
     }
     
+    public double xRangeCenter(double x) {
+        return x * width / screenWidth - width / 2;
+    }
+    
     public double yRange(double y) {
         return -y * height / screenHeight + height / 2 + yOffset;
+    }
+    
+    public double yRangeCenter(double y) {
+        return -y * height / screenHeight + height / 2;
     }
 }
