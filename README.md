@@ -3,6 +3,8 @@
 # Julian joukot
 Ohjelma kuvaa valitulle kompleksiluvulle vastaavan Julian joukon. Kompleksiluku valitaan painamalla jotakin pistettä Mandelbrotin joukosta tai sen lähettyviltä. Julian joukossa on arvoja vain jos valittu kompleksiluku on Mandelbrotin joukossa.
 
+Julian tai Mandelbrotin joukkoon voi zoomata hiirirullalla tai kahdella sormella touchpadillä.
+
 Projekti on toteutettu hakemistoon Fraktaalit.
 
 ## Dokumentaatio
@@ -13,6 +15,8 @@ Projekti on toteutettu hakemistoon Fraktaalit.
 [Arkkitehtuurikuvaus](https://github.com/oskarTom/ot-harjoitustyo/blob/master/Dokumentointi/arkkitehtuuri.md)
 
 ## Releaset
+[v1.2](https://github.com/oskarTom/ot-harjoitustyo/releases/tag/v1.2)
+
 [v1.1](https://github.com/oskarTom/ot-harjoitustyo/releases/tag/v1.1)
 
 [v1.0](https://github.com/oskarTom/ot-harjoitustyo/releases/tag/v1.0)
