@@ -20,4 +20,5 @@ Päivä | Aika | Mitä tein
 22.4| 2h | Päivitin graafista käyttöliittymää
 |  | 3h | Poistin zoom napin. Nyt voi zoomata hiirirullalla tai kahdella sormella touchpadilla
 |  | 2h | Korjasin zoomauksessa ilmeneviä ongelmia
-|**yht**| **30h 15min** 
+|  | 15 min | Siistin koodia
+|**yht**| **30h 30min** 
