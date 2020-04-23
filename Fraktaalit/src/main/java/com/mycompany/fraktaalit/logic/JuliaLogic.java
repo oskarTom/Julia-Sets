@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
  *
  * @author tomos
  */
-public class JuliaLogic {
+public class JuliaLogic extends Logic {
     private Canvas canvas;
     private int screenWidth;
     private int screenHeight;
@@ -28,15 +28,7 @@ public class JuliaLogic {
         for (int x = 0; x < screenWidth; x++) {
             for (int y = 0; y < screenHeight; y++) {
                 int test = escapeTest(new Complex(x * width / screenWidth - width / 2, y * height / screenHeight - height / 2), c, iterations);
-                if (test == 0) {
-                    pencil.setColor(x, y, Color.BLACK);
-                } else {
-                    if (test <= 50) {
-                        pencil.setColor(x, y, Color.hsb(test * 0.4 + 250, 1, 1, test * 0.01 + 0.49));
-                    } else {
-                        pencil.setColor(x, y, Color.hsb(test * 0.4 + 250, 1, 1));
-                    }
-                }
+                setColor(test, pencil, x, y);
             }
         }
     }

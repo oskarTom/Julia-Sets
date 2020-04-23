@@ -93,15 +93,7 @@ public class UI extends Application{
         mandelbrotMenu.setLeft(coordinates);
         mandelbrotMenu.setRight(mandelButtons);
         canvases.add(mandelbrotMenu, 2, 2);
-        
-        //---------------------------------------------------
-        //                  POPUP TEST
-        //---------------------------------------------------
-        /*
-        final Popup popup = new Popup(); 
-        //popup.setX(0); popup.setY(0);
-        popup.getContent().add(MandelReCoordinates);
-        */
+
         //---------------------------------------------------
         //                  ACTIONS
         //---------------------------------------------------
