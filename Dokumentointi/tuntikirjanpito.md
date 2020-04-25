@@ -21,4 +21,5 @@ Päivä | Aika | Mitä tein
 |  | 3h | Poistin zoom napin. Nyt voi zoomata hiirirullalla tai kahdella sormella touchpadilla
 |  | 2h | Korjasin zoomauksessa ilmeneviä ongelmia
 24.4| 15 min | Siistin koodia
-|**yht**| **30h 30min** 
+25.4| 2h | Lisäsin tallennus ominaisuuden
+|**yht**| **32h 30min** 
