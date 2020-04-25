@@ -32,10 +32,8 @@ public class Complex {
     }
     
     public boolean equals(Complex c) {
-        if (this.re == c.getReal()) {
-            if (this.im == c.getImaginary()) {
+        if (this.re == c.getReal() && this.im == c.getImaginary()) {
                 return true;
-            }
         }
         return false;
     }

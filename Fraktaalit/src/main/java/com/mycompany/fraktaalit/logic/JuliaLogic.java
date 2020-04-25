@@ -13,7 +13,7 @@ public class JuliaLogic extends Logic {
     private Canvas canvas;
     private int screenWidth;
     private int screenHeight;
-    
+
     public JuliaLogic(Canvas canvas) {
         this.canvas = canvas;
         this.screenWidth = (int) canvas.getWidth();
@@ -24,6 +24,7 @@ public class JuliaLogic extends Logic {
         double width = zoom.getWidth();
         double height = zoom.getHeight();
         PixelWriter pencil = canvas.getGraphicsContext2D().getPixelWriter();
+        canvas.getGraphicsContext2D().setFill(Color.TRANSPARENT);
         iterations = (escapeTest(new Complex(0, 0), c, iterations) == 0) ? 100 : iterations;
         for (int x = 0; x < screenWidth; x++) {
             for (int y = 0; y < screenHeight; y++) {

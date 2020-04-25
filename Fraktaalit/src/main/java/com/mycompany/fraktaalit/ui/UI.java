@@ -5,6 +5,7 @@ import com.mycompany.fraktaalit.logic.JuliaLogic;
 import com.mycompany.fraktaalit.logic.MandelbrotLogic;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -12,15 +13,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Popup;
-import javafx.stage.PopupWindow;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.scene.paint.Color;
+import javafx.stage.*;
+
+import javax.imageio.ImageIO;
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  *
@@ -97,21 +102,43 @@ public class UI extends Application{
         //---------------------------------------------------
         //                  ACTIONS
         //---------------------------------------------------
-        
+
         saveButton.setOnAction(e -> {
+            FileChooser fileChooser = new FileChooser();
+
+            FileChooser.ExtensionFilter extensionFilter =
+                    new FileChooser.ExtensionFilter("png files (*.png)","*.png");
+            fileChooser.getExtensionFilters().add(extensionFilter);
+
+            File file = fileChooser.showSaveDialog(primaryStage);
+
+            if (file != null) {
+                try {
+                    WritableImage writableImage = new WritableImage(screenWidth, screenHeight);
+                    juliaCanvas.snapshot(null,writableImage);
+                    RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
+                    ImageIO.write(renderedImage, "png", file);
+                } catch (IOException ex) {
+                    System.out.println(ex);
+                }
+            }
+
+/*
             Label saveLabel = new Label("Saving functionality here");
-            
+
             StackPane saveLayout = new StackPane();
             saveLayout.getChildren().add(saveLabel);
-            
+
             Scene secondScene = new Scene(saveLayout, 230, 100);
- 
+            secondScene.getStylesheets().add("dark.css");
             Stage newWindow = new Stage();
             newWindow.setTitle("Save Julia");
             newWindow.setScene(secondScene);
+            newWindow.setResizable(false);
             newWindow.show();
+*/
         });
-        
+
         
         mandelbrotCanvas.setOnMouseMoved(e -> {
             double x = e.getX();
@@ -190,6 +217,10 @@ public class UI extends Application{
         
         Scene scene = new Scene(setup);
         scene.getStylesheets().add("dark.css");
+
+        scene.setFill(Color.TRANSPARENT);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
+
         primaryStage.setScene(scene);
         primaryStage.setTitle("Julia Sets");
         primaryStage.setResizable(false);
