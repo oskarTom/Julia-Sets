@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -219,10 +220,11 @@ public class UI extends Application{
         scene.getStylesheets().add("dark.css");
 
         scene.setFill(Color.TRANSPARENT);
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        //primaryStage.initStyle(StageStyle.TRANSPARENT);
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Julia Sets");
+        primaryStage.getIcons().add(new Image("JuliaIconBlue.png"));
         primaryStage.setResizable(false);
         primaryStage.show();
     }
