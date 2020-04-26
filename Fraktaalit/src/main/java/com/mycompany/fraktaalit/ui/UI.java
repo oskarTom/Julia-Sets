@@ -6,6 +6,8 @@ import com.mycompany.fraktaalit.logic.MandelbrotLogic;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -15,11 +17,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.*;
 
@@ -36,8 +34,6 @@ public class UI extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //loadWindow.initStyle(StageStyle.UNDECORATED);
-        
         
         //---------------------------------------------------
         //                  INITALIZING
@@ -62,7 +58,28 @@ public class UI extends Application{
         Zoom initialZoomJulia = new Zoom(5, 2.8125);
         
         mandelbrot.draw(zoomMandelbrot, iterations);
-        
+
+        //---------------------------------------------------
+        //                  CUSTOM TOOLBAR
+        //---------------------------------------------------
+
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        BorderPane toolbar = new BorderPane();
+        VBox toolbarRight = new VBox();
+
+
+        Button exit = new Button("X");
+        toolbarRight.getChildren().add(exit);
+        toolbarRight.setPadding(new Insets(0,0,1,10));
+        toolbarRight.setAlignment(Pos.CENTER_RIGHT);
+
+        toolbar.setCenter(new Label("Julia Sets"));
+        toolbar.setRight(toolbarRight);
+
+        //---------------------------------------------------
+        //                  GUI SETUP
+        //---------------------------------------------------
+
         Label MandelReCoordinates = new Label("Re: ");
         Label MandelImCoordinates = new Label("Im: ");
         VBox coordinates = new VBox();
@@ -104,6 +121,9 @@ public class UI extends Application{
         //---------------------------------------------------
         //                  ACTIONS
         //---------------------------------------------------
+        exit.setOnAction(e -> {
+            primaryStage.close();
+        });
 
         saveButton.setOnAction(e -> {
             FileChooser fileChooser = new FileChooser();
@@ -214,6 +234,9 @@ public class UI extends Application{
         //---------------------------------------------------
         BorderPane setup = new BorderPane();
         setup.setCenter(canvases);
+
+
+        setup.setTop(toolbar);
         
         julia.draw(zoomJulia, iterations, c);
         

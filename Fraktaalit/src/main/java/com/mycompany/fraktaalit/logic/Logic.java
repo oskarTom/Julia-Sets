@@ -20,18 +20,24 @@ abstract class Logic {
         this.list.add(Color.BLACK);
     }
 
+    public Color getInSetColor() { return this.inSetColor; }
+
+    public List getList() { return this.list; }
+
     public Color outOfSetColor(List<Color> list, double test) {
         for (int i = 0; i < list.size() - 1; i++) {
             if (test % (list.size() * 255) < (i + 1) * 255) {
                 Color color = list.get(i);
                 Color nextColor = list.get(i + 1);
-                return Color.rgb( (int) (color.getRed() * (255 - test % 255) + nextColor.getRed() * (test % 255) ),
-                                  (int) (color.getGreen() * (255 - test % 255) + nextColor.getGreen() * (test % 255) ),
-                                  (int) (color.getBlue() * (255 - test % 255) + nextColor.getBlue() * (test % 255) ));
+                return rgbGradient(test, color, nextColor);
             }
         }
         Color color = list.get(list.size() - 1);
         Color nextColor = list.get(0);
+        return rgbGradient(test, color, nextColor);
+    }
+
+    private Color rgbGradient(double test, Color color, Color nextColor) {
         return Color.rgb( (int) (color.getRed() * (255 - test % 255) + nextColor.getRed() * (test % 255)),
                           (int) (color.getGreen() * (255 - test % 255) + nextColor.getGreen() * (test % 255)),
                           (int) (color.getBlue() * (255 - test % 255) + nextColor.getBlue() * (test % 255))
@@ -42,7 +48,7 @@ abstract class Logic {
         if (test == 0) {
             pencil.setColor(x, y, inSetColor);
         } else {
-            pencil.setColor(x, y, outOfSetColor(list, test*3));
+            pencil.setColor(x, y, outOfSetColor(list, test*10));
 
 /*
             if (test <= 50) {
