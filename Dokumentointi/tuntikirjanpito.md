@@ -22,4 +22,5 @@ Päivä | Aika | Mitä tein
 |  | 2h | Korjasin zoomauksessa ilmeneviä ongelmia
 24.4| 15 min | Siistin koodia
 25.4| 2h | Lisäsin tallennus ominaisuuden
-|**yht**| **32h 30min** 
+26.4| 4h 30min | Muutin pikselin värin määrittämiseen käytettyä metodia
+|**yht**| **37h** 
