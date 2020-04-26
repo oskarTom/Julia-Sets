@@ -78,11 +78,12 @@ public class UI extends Application{
         
         buttons.getChildren().add(saveButton);
         buttons.getChildren().add(resetJuliaZoom);
-        
+
+
         GridPane canvases = new GridPane();
         canvases.add(juliaCanvas, 1, 1);
         canvases.add(mandelbrotCanvas, 2, 1);
-        
+
         
         BorderPane juliaMenu = new BorderPane();
         juliaMenu.setLeft(cValue);

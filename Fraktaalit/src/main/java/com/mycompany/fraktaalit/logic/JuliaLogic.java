@@ -5,10 +5,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.paint.Color;
 
-/**
- *
- * @author tomos
- */
 public class JuliaLogic extends Logic {
     private Canvas canvas;
     private int screenWidth;
