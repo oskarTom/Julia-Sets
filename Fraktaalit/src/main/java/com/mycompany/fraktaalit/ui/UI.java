@@ -8,6 +8,7 @@ import static javafx.application.Application.launch;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -22,6 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.*;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
@@ -60,13 +62,26 @@ public class UI extends Application{
         mandelbrot.draw(zoomMandelbrot, iterations);
 
         //---------------------------------------------------
-        //                  CUSTOM TOOLBAR
+        //                  CUSTOM TITLEBAR
         //---------------------------------------------------
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
         BorderPane toolbar = new BorderPane();
         VBox toolbarRight = new VBox();
 
+        Point cursorCoord = new Point(0,0);
+        toolbar.setOnMouseReleased(e -> {
+            cursorCoord.setLocation(0,0);
+        });
+        toolbar.setOnMousePressed(e -> {
+            cursorCoord.setLocation(e.getX(), e.getY());
+        });
+
+        toolbar.setOnMouseDragged(e -> {
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            stage.setX(e.getScreenX() - cursorCoord.getX());
+            stage.setY(e.getScreenY() - cursorCoord.getY());
+        });
 
         Button exit = new Button("X");
         toolbarRight.getChildren().add(exit);
@@ -75,6 +90,7 @@ public class UI extends Application{
 
         toolbar.setCenter(new Label("Julia Sets"));
         toolbar.setRight(toolbarRight);
+
 
         //---------------------------------------------------
         //                  GUI SETUP
@@ -98,6 +114,7 @@ public class UI extends Application{
 
 
         GridPane canvases = new GridPane();
+        canvases.setPadding(new Insets(2,2,2,2));
         canvases.add(juliaCanvas, 1, 1);
         canvases.add(mandelbrotCanvas, 2, 1);
 
@@ -126,6 +143,21 @@ public class UI extends Application{
         });
 
         saveButton.setOnAction(e -> {
+            /*
+            Label saveLabel = new Label("Saving functionality here");
+
+            StackPane saveLayout = new StackPane();
+            saveLayout.getChildren().add(saveLabel);
+
+            Scene secondScene = new Scene(saveLayout, 230, 100);
+            secondScene.getStylesheets().add("dark.css");
+            Stage newWindow = new Stage();
+            newWindow.setTitle("Save Julia");
+            newWindow.setScene(secondScene);
+            newWindow.setResizable(false);
+            newWindow.show();
+*/
+
             FileChooser fileChooser = new FileChooser();
 
             FileChooser.ExtensionFilter extensionFilter =
@@ -144,21 +176,6 @@ public class UI extends Application{
                     System.out.println(ex);
                 }
             }
-
-/*
-            Label saveLabel = new Label("Saving functionality here");
-
-            StackPane saveLayout = new StackPane();
-            saveLayout.getChildren().add(saveLabel);
-
-            Scene secondScene = new Scene(saveLayout, 230, 100);
-            secondScene.getStylesheets().add("dark.css");
-            Stage newWindow = new Stage();
-            newWindow.setTitle("Save Julia");
-            newWindow.setScene(secondScene);
-            newWindow.setResizable(false);
-            newWindow.show();
-*/
         });
 
         
