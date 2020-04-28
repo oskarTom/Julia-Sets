@@ -7,10 +7,6 @@ package com.mycompany.fraktaalit.ui.graphics;
 
 import javafx.scene.canvas.Canvas;
 
-/**
- *
- * @author tomos
- */
 public class Zoom {
     private int screenWidth;
     private int screenHeight;
@@ -53,7 +49,9 @@ public class Zoom {
         return this.yOffset;
     }
 
-    public int getZoom() { return (int) (1/this.height + 200); }
+    public int getZoom() {
+        return (int) (1 / this.height + 300);
+    }
     
     public void setWidth(double width) {
         this.width = width;
@@ -73,17 +71,19 @@ public class Zoom {
     
     public void zoom(double multiplier, double x, double y) {
         if (multiplier > 0 && multiplier < 10) {
-            this.xOffset = xRangeCenter(x)*(multiplier)+ xOffset;
-            this.yOffset = yRangeCenter(y)*(multiplier) + yOffset;
+            this.xOffset = xRangeCenter(x) * (multiplier) + xOffset;
+            this.yOffset = yRangeCenter(y) * (multiplier) + yOffset;
             this.width = this.width * (1 / (multiplier + 1));
             this.height = this.height * (1 / (multiplier + 1));
         } else if (multiplier < 0) {
-            this.width = this.width * (-multiplier+1);
-            this.height = this.height * (-multiplier+1);
+            this.width = this.width * (-multiplier + 1);
+            this.height = this.height * (-multiplier + 1);
         }
     }
     
-    public double xRange(double x) { return x * width / screenWidth - width / 2 + xOffset; }
+    public double xRange(double x) {
+        return x * width / screenWidth - width / 2 + xOffset;
+    }
     
     public double xRangeCenter(double x) {
         return x * width / screenWidth - width / 2;
