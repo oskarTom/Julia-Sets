@@ -97,9 +97,11 @@ public class UI extends Application{
 
         Label MandelReCoordinates = new Label("Re: ");
         Label MandelImCoordinates = new Label("Im: ");
+        Label MIterations = new Label("Iterations: "+zoomMandelbrot.getZoom());
         VBox coordinates = new VBox();
         coordinates.getChildren().add(MandelReCoordinates);
         coordinates.getChildren().add(MandelImCoordinates);
+        coordinates.getChildren().add(MIterations);
         
         Label cValue = new Label("c = "+c.toString());
         
@@ -208,12 +210,14 @@ public class UI extends Application{
             double x = e.getX();
             double y = e.getY();
             double delta = e.getDeltaY();
+            FractalSetup fs = new FractalSetup(zoomMandelbrot, iterations);
+            MIterations.setText("Iterations: "+fs.getIterations());
             if (delta >= 0) {
                 zoomMandelbrot.zoom(delta/32, x, y);
             } else {
                 zoomMandelbrot.zoom(delta/32, mandelbrotScreenWidth-x, screenHeight-y);
             }
-            mandelbrot.draw(new FractalSetup(zoomMandelbrot, iterations));
+            mandelbrot.draw(fs);
         });
         
         resetZoom.setOnAction(e -> {
@@ -228,10 +232,11 @@ public class UI extends Application{
             double x = e.getX();
             double y = e.getY();
             double delta = e.getDeltaY();
+
             if (delta >= 0) {
-                zoomJulia.zoom(delta*0.05, x, y);
+                zoomJulia.zoom(delta/32, x, y);
             } else {
-                zoomJulia.zoom(delta*0.05, screenWidth-x, screenHeight-y);
+                zoomJulia.zoom(delta/32, screenWidth-x, screenHeight-y);
             }
             julia.draw(new FractalSetup(c, zoomJulia, iterations));
         });

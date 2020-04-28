@@ -11,12 +11,21 @@ public class FractalSetup {
     public FractalSetup(Complex c, Zoom zoom, int iterations) {
         this.c = c;
         this.zoom = zoom;
-        this.iterations = zoom.getZoom();
+        if (zoom.getZoom() > 2000) {
+            this.iterations = iterations;
+        } else {
+            this.iterations = zoom.getZoom();
+        }
+
     }
 
     public FractalSetup(Zoom zoom, int iterations) {
         this.zoom = zoom;
-        this.iterations = iterations;
+        if (zoom.getZoom() > 2000) {
+            this.iterations = iterations;
+        } else {
+            this.iterations = zoom.getZoom();
+        }
     }
 
     public Complex getC(){ return this.c; }

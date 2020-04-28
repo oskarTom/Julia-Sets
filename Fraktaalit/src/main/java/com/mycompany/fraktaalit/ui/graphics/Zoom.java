@@ -53,7 +53,7 @@ public class Zoom {
         return this.yOffset;
     }
 
-    public int getZoom() { return (int) (this.screenHeight / this.height); }
+    public int getZoom() { return (int) (1/this.height + 200); }
     
     public void setWidth(double width) {
         this.width = width;
