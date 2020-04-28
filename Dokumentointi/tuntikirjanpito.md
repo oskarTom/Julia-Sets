@@ -23,4 +23,6 @@ Päivä | Aika | Mitä tein
 24.4| 15 min | Siistin koodia
 25.4| 2h | Lisäsin tallennus ominaisuuden
 26.4| 4h 30min | Muutin pikselin värin määrittämiseen käytettyä metodia
-|**yht**| **37h** 
+28.4| 1h | Työstin title baria
+|  | 3h | Otin draw funktion pois logiikasta, jotta se ei esiinno testiraportissa. Muutin myös iterointien toiminnan
+|**yht**| **41h** 
