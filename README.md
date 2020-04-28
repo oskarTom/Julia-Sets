@@ -8,7 +8,7 @@ Julian tai Mandelbrotin joukkoon voi zoomata hiirirullalla tai kahdella sormella
 Projekti on toteutettu hakemistoon Fraktaalit.
 
 ## Dokumentaatio
-[Käyttöohje](https://github.com/oskarTom/ot-harjoitustyo/blob/master/Dokumentointi/K%C3%A4ytt%C3%B6ohje)
+[Käyttöohje](https://github.com/oskarTom/ot-harjoitustyo/blob/master/Dokumentointi/K%C3%A4ytt%C3%B6ohje.md)
 
 [Vaatimusmäärittely](https://github.com/oskarTom/ot-harjoitustyo/blob/master/Dokumentointi/Vaatimusmaarittely.md)
 
