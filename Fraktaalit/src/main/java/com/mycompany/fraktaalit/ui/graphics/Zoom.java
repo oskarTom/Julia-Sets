@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.fraktaalit.ui;
+package com.mycompany.fraktaalit.ui.graphics;
 
 import javafx.scene.canvas.Canvas;
 
@@ -13,17 +13,19 @@ import javafx.scene.canvas.Canvas;
  */
 public class Zoom {
     private int screenWidth;
-    private int screenHeight = 360;
+    private int screenHeight;
     private double width;
     private double height;
     private double xOffset;
     private double yOffset;
     
-    public Zoom(double width, double height) {
+    public Zoom(double width, double height, Canvas canvas) {
         this.width = width;
         this.height = height;
         this.xOffset = 0;
         this.yOffset = 0;
+        this.screenWidth = (int) canvas.getWidth();
+        this.screenHeight = (int) canvas.getHeight();
     }
     
     public Zoom(double width, double height, double xOffset, Canvas canvas) {
@@ -50,6 +52,8 @@ public class Zoom {
     public double getYOffset() {
         return this.yOffset;
     }
+
+    public int getZoom() { return (int) (this.screenHeight / this.height); }
     
     public void setWidth(double width) {
         this.width = width;
@@ -79,9 +83,7 @@ public class Zoom {
         }
     }
     
-    public double xRange(double x) {
-        return x * width / screenWidth - width / 2 + xOffset;
-    }
+    public double xRange(double x) { return x * width / screenWidth - width / 2 + xOffset; }
     
     public double xRangeCenter(double x) {
         return x * width / screenWidth - width / 2;

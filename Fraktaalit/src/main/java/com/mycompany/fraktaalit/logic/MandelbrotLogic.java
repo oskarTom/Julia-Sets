@@ -1,38 +1,23 @@
 package com.mycompany.fraktaalit.logic;
 
-import com.mycompany.fraktaalit.ui.Zoom;
+import com.mycompany.fraktaalit.ui.graphics.FractalDrawer;
+import com.mycompany.fraktaalit.ui.graphics.Zoom;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.PixelWriter;
-import javafx.scene.paint.Color;
 
 /**
  *
  * @author tomos
  */
-public class MandelbrotLogic extends Logic{
-    private Canvas canvas;
-    private int screenWidth;
-    private int screenHeight;
+public class MandelbrotLogic extends FractalDrawer {
 
     public MandelbrotLogic(Canvas canvas) {
-        this.canvas = canvas;
-        this.screenWidth = (int) canvas.getWidth();
-        this.screenHeight = (int) canvas.getHeight();
+        super(canvas);
     }
 
-    public void draw(Zoom zoom, int iterations) {
-        PixelWriter pencil = canvas.getGraphicsContext2D().getPixelWriter();
-        for (int x = 0; x < screenWidth; x++) {
-            for (int y = 0; y < screenHeight; y++) {
-                int test = escapeTest(new Complex(zoom.xRange(x), zoom.yRange(y)), iterations);
-                setColor(test, pencil, x, y);
-            }
-        }
-    }
-    
-    public int escapeTest(Complex c, int iterations) {
+    public int escapeTest(Complex c, FractalSetup fs) {
         Complex f = c;
-        for (int i = 1; i < iterations; i++) {
+        for (int i = 1; i < fs.getIterations(); i++) {
             f = c.add(f.product(f));
             if (f.modulus() > 2) {
                 return i;

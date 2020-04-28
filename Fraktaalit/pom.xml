@@ -40,6 +40,7 @@
                 <configuration>
                     <excludes>
                         <exclude>com/mycompany/fraktaalit/ui/*</exclude>
+                        <exclude>com/mycompany/fraktaalit/ui/graphics/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

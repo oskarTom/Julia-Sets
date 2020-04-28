@@ -51,4 +51,19 @@ public class ComplexTest {
         assertTrue(z4.modulus() > 0);
         assertTrue(z5.modulus() > 0);
     }
+
+    @Test
+    public void toStringWorks() {
+        Complex z1 = new Complex(0,0);
+        Complex z2 = new Complex(1,1);
+        Complex z3 = new Complex(-1,1);
+        Complex z4 = new Complex(1,-1);
+        Complex z5 = new Complex(-1,-1);
+
+        assertEquals(z1.toString(),"0.0");
+        assertEquals(z2.toString(),"1.0+1.0i");
+        assertEquals(z3.toString(),"-1.0+1.0i");
+        assertEquals(z4.toString(),"1.0-1.0i");
+        assertEquals(z5.toString(),"-1.0-1.0i");
+    }
 }

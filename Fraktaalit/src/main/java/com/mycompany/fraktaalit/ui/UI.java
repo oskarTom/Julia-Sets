@@ -1,8 +1,10 @@
 package com.mycompany.fraktaalit.ui;
 
 import com.mycompany.fraktaalit.logic.Complex;
+import com.mycompany.fraktaalit.logic.FractalSetup;
 import com.mycompany.fraktaalit.logic.JuliaLogic;
 import com.mycompany.fraktaalit.logic.MandelbrotLogic;
+import com.mycompany.fraktaalit.ui.graphics.Zoom;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.embed.swing.SwingFXUtils;
@@ -11,11 +13,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.*;
@@ -45,7 +44,7 @@ public class UI extends Application{
         int mandelbrotScreenWidth = 480;
         double Re = 0;
         double Im = 0;
-        int iterations = 2000; //default: 5000
+        int iterations = 1000; //default: 5000
         Complex c = new Complex(Re,Im);
         
         Canvas juliaCanvas = new Canvas(screenWidth,screenHeight);
@@ -56,10 +55,10 @@ public class UI extends Application{
         
         Zoom zoomMandelbrot = new Zoom(3.5, 10.5/4, -0.5, mandelbrotCanvas);
         Zoom initialZoomMandelbrot = new Zoom(3.5, 10.5/4, -0.5, mandelbrotCanvas);
-        Zoom zoomJulia = new Zoom(5, 2.8125);
-        Zoom initialZoomJulia = new Zoom(5, 2.8125);
+        Zoom zoomJulia = new Zoom(5.0, 2.8125, juliaCanvas);
+        Zoom initialZoomJulia = new Zoom(5.0, 2.8125, juliaCanvas);
         
-        mandelbrot.draw(zoomMandelbrot, iterations);
+        mandelbrot.draw(new FractalSetup(zoomMandelbrot, iterations));
 
         //---------------------------------------------------
         //                  CUSTOM TITLEBAR
@@ -114,7 +113,6 @@ public class UI extends Application{
 
 
         GridPane canvases = new GridPane();
-        canvases.setPadding(new Insets(2,2,2,2));
         canvases.add(juliaCanvas, 1, 1);
         canvases.add(mandelbrotCanvas, 2, 1);
 
@@ -191,7 +189,7 @@ public class UI extends Application{
             double y = e.getY();
             c.setReal(zoomMandelbrot.xRange(x));
             c.setImaginary(zoomMandelbrot.yRange(y));
-            julia.draw(zoomJulia, iterations, c);
+            julia.draw(new FractalSetup(c, zoomJulia, iterations));
             cValue.setText("c = "+c.toString());        
         });
         
@@ -202,7 +200,7 @@ public class UI extends Application{
             MandelImCoordinates.setText("Im: "+ zoomMandelbrot.yRange(y));
             c.setReal(zoomMandelbrot.xRange(x));
             c.setImaginary(zoomMandelbrot.yRange(y));
-            julia.draw(zoomJulia, iterations, c);
+            julia.draw(new FractalSetup(c, zoomJulia, iterations));
             cValue.setText("c = "+c.toString());
         });
         
@@ -215,7 +213,7 @@ public class UI extends Application{
             } else {
                 zoomMandelbrot.zoom(delta/32, mandelbrotScreenWidth-x, screenHeight-y);
             }
-            mandelbrot.draw(zoomMandelbrot, iterations);
+            mandelbrot.draw(new FractalSetup(zoomMandelbrot, iterations));
         });
         
         resetZoom.setOnAction(e -> {
@@ -223,7 +221,7 @@ public class UI extends Application{
             zoomMandelbrot.setWidth(initialZoomMandelbrot.getWidth());
             zoomMandelbrot.setXOffset(initialZoomMandelbrot.getXOffset());
             zoomMandelbrot.setYOffset(initialZoomMandelbrot.getYOffset());
-            mandelbrot.draw(zoomMandelbrot, iterations);
+            mandelbrot.draw(new FractalSetup(zoomMandelbrot, iterations));
         });
         
         juliaCanvas.setOnScroll(e -> {
@@ -235,7 +233,7 @@ public class UI extends Application{
             } else {
                 zoomJulia.zoom(delta*0.05, screenWidth-x, screenHeight-y);
             }
-            julia.draw(zoomJulia, iterations, c);
+            julia.draw(new FractalSetup(c, zoomJulia, iterations));
         });
         
         resetJuliaZoom.setOnAction(e -> {
@@ -243,7 +241,7 @@ public class UI extends Application{
             zoomJulia.setWidth(initialZoomJulia.getWidth());
             zoomJulia.setXOffset(initialZoomJulia.getXOffset());
             zoomJulia.setYOffset(initialZoomJulia.getYOffset());
-            julia.draw(zoomJulia, iterations, c);
+            julia.draw(new FractalSetup(c, zoomJulia, iterations));
         });
         
         //---------------------------------------------------
@@ -255,7 +253,7 @@ public class UI extends Application{
 
         setup.setTop(toolbar);
         
-        julia.draw(zoomJulia, iterations, c);
+        julia.draw(new FractalSetup(c, zoomJulia, iterations));
         
         Scene scene = new Scene(setup);
         scene.getStylesheets().add("dark.css");

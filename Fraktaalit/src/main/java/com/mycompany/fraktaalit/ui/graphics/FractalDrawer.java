@@ -1,17 +1,26 @@
-package com.mycompany.fraktaalit.logic;
+package com.mycompany.fraktaalit.ui.graphics;
 
+import com.mycompany.fraktaalit.logic.Complex;
+import com.mycompany.fraktaalit.logic.FractalSetup;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class Logic {
+public abstract class FractalDrawer {
 
+    private Canvas canvas;
+    private int screenWidth;
+    private int screenHeight;
     private Color inSetColor;
     private List<Color> list;
 
-    public Logic() {
+    public FractalDrawer(Canvas canvas) {
+        this.canvas = canvas;
+        this.screenWidth = (int) canvas.getWidth();
+        this.screenHeight = (int) canvas.getHeight();
         this.inSetColor = Color.BLACK;
         this.list = new ArrayList<>();
         this.list.add(Color.DARKBLUE);
@@ -60,4 +69,16 @@ abstract class Logic {
 
         }
     }
+
+    public void draw(FractalSetup fs) {
+        PixelWriter pencil = canvas.getGraphicsContext2D().getPixelWriter();
+        for (int x = 0; x < screenWidth; x++) {
+            for (int y = 0; y < screenHeight; y++) {
+                int test = escapeTest(new Complex(fs.getZoom().xRange(x), fs.getZoom().yRange(y)), fs);
+                setColor(test, pencil, x, y);
+            }
+        }
+    }
+
+    public int escapeTest(Complex c, FractalSetup fs){return 0;};
 }

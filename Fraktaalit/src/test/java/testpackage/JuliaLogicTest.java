@@ -6,7 +6,9 @@
 package testpackage;
 
 import com.mycompany.fraktaalit.logic.Complex;
+import com.mycompany.fraktaalit.logic.FractalSetup;
 import com.mycompany.fraktaalit.logic.JuliaLogic;
+import com.mycompany.fraktaalit.ui.graphics.Zoom;
 import javafx.scene.canvas.Canvas;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -32,12 +34,12 @@ public class JuliaLogicTest {
     @Test
     public void doesntEscape(){
         Complex c = new Complex(0, 0);
-        assertEquals(julia.escapeTest(new Complex(0,0), c, 10000),0);
+        assertEquals(julia.escapeTest(new Complex(0,0),new FractalSetup(c, new Zoom(100,100,canvas), 10000)),0);
     }
     
     @Test
     public void escapes(){
         Complex c = new Complex(0, 1);
-        assertTrue(julia.escapeTest(new Complex(-1.5,0.01), c, 10000) > 0);
+        assertTrue(julia.escapeTest(new Complex(-1.5,0.01), new FractalSetup(c, new Zoom(100,100,canvas), 10000)) > 0);
     }
 }
