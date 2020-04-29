@@ -25,4 +25,5 @@ Päivä | Aika | Mitä tein
 26.4| 4h 30min | Muutin pikselin värin määrittämiseen käytettyä metodia
 28.4| 1h | Työstin title baria
 |  | 3h | Otin draw funktion pois logiikasta, jotta se ei esiinno testiraportissa. Muutin myös iterointien toiminnan
-|**yht**| **41h** 
+29.4| 1h | Siirsin napit toolbaariin
+|**yht**| **42h** 
