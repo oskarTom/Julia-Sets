@@ -15,6 +15,8 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.*;
@@ -66,7 +68,8 @@ public class UI extends Application{
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
         BorderPane toolbar = new BorderPane();
-        VBox toolbarRight = new VBox();
+        HBox toolbarRight = new HBox();
+        HBox toolbarLeft = new HBox();
 
         Point cursorCoord = new Point(0,0);
         toolbar.setOnMouseReleased(e -> {
@@ -87,6 +90,19 @@ public class UI extends Application{
         toolbarRight.setPadding(new Insets(0,0,1,10));
         toolbarRight.setAlignment(Pos.CENTER_RIGHT);
 
+        MenuItem saveButton = new MenuItem("Save Julia set as png");
+        MenuButton filesButton = new MenuButton("Files");
+        filesButton.getItems().add(saveButton);
+
+        MenuItem resetJuliaZoom = new MenuItem("Reset Julia set zoom");
+        MenuItem resetZoom = new MenuItem("Reset Mandelbrot set zoom");
+        MenuButton editButton = new MenuButton("Edit");
+        editButton.getItems().addAll(resetZoom, resetJuliaZoom);
+
+        toolbarLeft.getChildren().addAll(filesButton, editButton);
+
+
+        toolbar.setLeft(toolbarLeft);
         toolbar.setCenter(new Label("Julia Sets"));
         toolbar.setRight(toolbarRight);
 
@@ -106,12 +122,7 @@ public class UI extends Application{
         Label cValue = new Label("c = "+c.toString());
         
         HBox buttons = new HBox();
-        Button saveButton = new Button("Save as png");
-        Button resetJuliaZoom = new Button("Reset Zoom");
-        Button resetZoom = new Button("Reset Zoom");
-        
-        buttons.getChildren().add(saveButton);
-        buttons.getChildren().add(resetJuliaZoom);
+
 
 
         GridPane canvases = new GridPane();
@@ -122,17 +133,11 @@ public class UI extends Application{
         BorderPane juliaMenu = new BorderPane();
         juliaMenu.setLeft(cValue);
         juliaMenu.setRight(buttons);
-        //juliaMenu.setPadding(new Insets());
         canvases.add(juliaMenu, 1, 2);
-        
-        
-        
-        HBox mandelButtons = new HBox();
-        mandelButtons.getChildren().add(resetZoom);
+
         
         BorderPane mandelbrotMenu = new BorderPane();
         mandelbrotMenu.setLeft(coordinates);
-        mandelbrotMenu.setRight(mandelButtons);
         canvases.add(mandelbrotMenu, 2, 2);
 
         //---------------------------------------------------

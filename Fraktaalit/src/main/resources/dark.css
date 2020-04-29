@@ -29,6 +29,25 @@
 .toggle-button:hover {
     -fx-background-color: secondary;
 }
-.toggle-button:selected {
-    -fx-background-color: darkest;
+.menu-button {
+    -fx-background-color: primary;
+    -fx-text-fill: primarytext;
+    -fx-background-radius: 0;
+}
+.menu-button:hover {
+    -fx-background-color: secondary;
+}
+.menu-button > .arrow-button {
+    -fx-padding: 0;
+}
+.menu-button > .arrow-button > .arrow {
+    -fx-padding: 0;
+}
+.menu-item {
+    -fx-background-color: primary;
+    -fx-text-fill: primarytext;
+    -fx-background-radius: 0;
+}
+.menu-item:hover {
+    -fx-background-color: secondary;
 }
