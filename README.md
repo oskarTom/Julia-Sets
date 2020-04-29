@@ -47,3 +47,9 @@ Ckeckstyle tarkistus suoritetaan komennolla
 
     mvn jxr:jxr checkstyle:checkstyle
 Tulokset näkyvät tiedostossa *target/site/checkstyle.html*
+
+### JavaDoc
+JavaDoc voidaan generoida komennolla
+
+    mvn javadoc:javadoc
+Generoitua JavaDoccia voi tarkastella tiedostosta *target/site/apidocs/index.html*
