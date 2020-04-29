@@ -11,7 +11,7 @@ Joukoissa voi liikkua myös painamalla pistettä mandelbrotin joukossa ja liikut
 
 Zoomaus johonkin pisteeseen Julian tai Mandelbrotin joukossa onnistuu pyörittämällä hiirirullaa tai touchpadilla kahdella sormella. Zoomaaminen pisteisiin, jotka ovat joukon sisällä saattaa hidastaa ohjelmaa huomattavasti, koska tällöin iterointeja joudutaan tekemään enemmän.
 
-Zoomauksen voi perua painamalla _Reset Zoom_ nappia joukon alapuolelta.
+Zoomauksen voi perua valitsemalla valikosta _Edit --> Reset Zoom_.
 ### Joukon tallentaminen kuvatiedostoksi
 
-Julian joukon voi tallentaa kuvatiedostoksi. Tämä onnistuu painamalla _Save as png_ nappia Julian joukon alapuolelta.
+Julian joukon voi tallentaa kuvatiedostoksi. Tämä onnistuu valitsemalla valikosta _Files --> Save as png_.
