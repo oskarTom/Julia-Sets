@@ -85,10 +85,15 @@ public class UI extends Application{
             stage.setY(e.getScreenY() - cursorCoord.getY());
         });
 
-        Button exit = new Button("X");
-        toolbarRight.getChildren().add(exit);
+        Button exit = new Button("×");
+        exit.getStyleClass().add("close-btn");
+        Button minimize = new Button("-");
+        toolbarRight.getChildren().addAll(minimize,exit);
         toolbarRight.setPadding(new Insets(0,0,1,10));
         toolbarRight.setAlignment(Pos.CENTER_RIGHT);
+
+
+
 
         MenuItem saveButton = new MenuItem("Save Julia set as png");
         MenuButton filesButton = new MenuButton("Files");
@@ -146,6 +151,10 @@ public class UI extends Application{
         //---------------------------------------------------
         exit.setOnAction(e -> {
             primaryStage.close();
+        });
+
+        minimize.setOnAction(e -> {
+            primaryStage.setIconified(true);
         });
 
         saveButton.setOnAction(e -> {
