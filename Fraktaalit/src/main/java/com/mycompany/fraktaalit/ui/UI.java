@@ -13,9 +13,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
@@ -106,6 +106,7 @@ public class UI extends Application{
         toolbar.setCenter(new Label("Julia Sets"));
         toolbar.setRight(toolbarRight);
 
+        SaveMenu saveMenu = new SaveMenu();
 
         //---------------------------------------------------
         //                  GUI SETUP
@@ -148,41 +149,8 @@ public class UI extends Application{
         });
 
         saveButton.setOnAction(e -> {
-            /*
-            Label saveLabel = new Label("Saving functionality here");
-
-            StackPane saveLayout = new StackPane();
-            saveLayout.getChildren().add(saveLabel);
-
-            Scene secondScene = new Scene(saveLayout, 230, 100);
-            secondScene.getStylesheets().add("dark.css");
-            Stage newWindow = new Stage();
-            newWindow.setTitle("Save Julia");
-            newWindow.setScene(secondScene);
-            newWindow.setResizable(false);
-            newWindow.show();
-*/
-
-            FileChooser fileChooser = new FileChooser();
-
-            FileChooser.ExtensionFilter extensionFilter =
-                    new FileChooser.ExtensionFilter("png files (*.png)","*.png");
-            fileChooser.getExtensionFilters().add(extensionFilter);
-
-            File file = fileChooser.showSaveDialog(primaryStage);
-
-            if (file != null) {
-                try {
-                    WritableImage writableImage = new WritableImage(screenWidth, screenHeight);
-                    juliaCanvas.snapshot(null,writableImage);
-                    RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
-                    ImageIO.write(renderedImage, "png", file);
-                } catch (IOException ex) {
-                    System.out.println(ex);
-                }
-            }
+            saveMenu.start(primaryStage, c, zoomJulia);
         });
-
         
         mandelbrotCanvas.setOnMouseMoved(e -> {
             double x = e.getX();

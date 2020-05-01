@@ -32,6 +32,15 @@ public class Zoom {
         this.screenWidth = (int) canvas.getWidth();
         this.screenHeight = (int) canvas.getHeight();
     }
+
+    public Zoom(double width, double height, double xOffset, double yOffset, Canvas canvas) {
+        this.width = width;
+        this.height = height;
+        this.xOffset = xOffset;
+        this.yOffset = yOffset;
+        this.screenWidth = (int) canvas.getWidth();
+        this.screenHeight = (int) canvas.getHeight();
+    }
     
     public double getWidth() {
         return this.width;
