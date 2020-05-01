@@ -14,4 +14,6 @@ Zoomaus johonkin pisteeseen Julian tai Mandelbrotin joukossa onnistuu pyörittä
 Zoomauksen voi perua valitsemalla valikosta _Edit --> Reset Zoom_.
 ### Joukon tallentaminen kuvatiedostoksi
 
-Julian joukon voi tallentaa kuvatiedostoksi. Tämä onnistuu valitsemalla valikosta _Files --> Save as png_.
+Julian joukon voi tallentaa kuvatiedostoksi. Tämä onnistuu valitsemalla valikosta _Files --> Save as png_. Uusi ikkuna aukeaa, jossa pyydetään valitsemaan resoluutio. Kuvan tallentamisessa voi mennä hetki, jos kuvan generointia varten joudutaan tekemään paljon iterointeja. 
+
+_Huom: Kuvaa generoitaessa suoritetaan tavallista enemmän iterointeja, joten pisteet jotvä voivat näyttää kuuluvan Julia joukkoon saattavatkin olla joukon ulkopuolella generoidussa kuvassa._
