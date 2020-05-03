@@ -16,6 +16,7 @@ Projekti on toteutettu hakemistoon Fraktaalit.
 
 [Arkkitehtuurikuvaus](https://github.com/oskarTom/ot-harjoitustyo/blob/master/Dokumentointi/arkkitehtuuri.md)
 
+[Testausdokumentti](https://github.com/oskarTom/ot-harjoitustyo/blob/master/Dokumentointi/testaus.md)
 ## Releaset
 [v1.3](https://github.com/oskarTom/ot-harjoitustyo/releases/tag/v1.3)
 
