@@ -29,4 +29,4 @@ Päivä | Aika | Mitä tein
 1.5 | 2h | Lisäsin toiminnallisuuden tallennettavan kuvan resoluution määrittämiseksi
 5.5 | 1h | Dokumentointia
 |  | 1h | Julia joukon voi nyt lukita keskipisteeseen zoomatessa
-|**yht**| **45h** 
+|**yht**| **46h** 
