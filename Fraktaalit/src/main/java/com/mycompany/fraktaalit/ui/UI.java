@@ -124,27 +124,22 @@ public class UI extends Application{
         coordinates.getChildren().add(MandelReCoordinates);
         coordinates.getChildren().add(MandelImCoordinates);
         coordinates.getChildren().add(MIterations);
+        coordinates.setAlignment(Pos.BOTTOM_LEFT);
+        coordinates.setPickOnBounds(false);
         
         Label cValue = new Label("c = "+c.toString());
-        
-        HBox buttons = new HBox();
 
+        StackPane juliaPane = new StackPane();
+        juliaPane.getChildren().addAll(juliaCanvas, cValue);
+        juliaPane.setAlignment(Pos.BOTTOM_LEFT);
 
+        StackPane mandelbrotPane = new StackPane();
+        mandelbrotPane.getChildren().addAll(mandelbrotCanvas, coordinates);
+        mandelbrotPane.setAlignment(Pos.BOTTOM_LEFT);
 
         GridPane canvases = new GridPane();
-        canvases.add(juliaCanvas, 1, 1);
-        canvases.add(mandelbrotCanvas, 2, 1);
-
-        
-        BorderPane juliaMenu = new BorderPane();
-        juliaMenu.setLeft(cValue);
-        juliaMenu.setRight(buttons);
-        canvases.add(juliaMenu, 1, 2);
-
-        
-        BorderPane mandelbrotMenu = new BorderPane();
-        mandelbrotMenu.setLeft(coordinates);
-        canvases.add(mandelbrotMenu, 2, 2);
+        canvases.add(juliaPane, 1, 1);
+        canvases.add(mandelbrotPane, 2, 1);
 
         //---------------------------------------------------
         //                  ACTIONS
