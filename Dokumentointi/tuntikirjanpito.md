@@ -27,4 +27,5 @@ Päivä | Aika | Mitä tein
 |  | 3h | Otin draw funktion pois logiikasta, jotta se ei esiinno testiraportissa. Muutin myös iterointien toiminnan
 29.4| 1h | Siirsin napit toolbaariin
 1.5 | 2h | Lisäsin toiminnallisuuden tallennettavan kuvan resoluution määrittämiseksi
+5.5 | 1h | Dokumentointia
 |**yht**| **44h** 
