@@ -89,6 +89,16 @@ public class Zoom {
             this.height = this.height * (-multiplier + 1);
         }
     }
+
+    public void zoomToCenter(double multiplier, double x, double y) {
+        if (multiplier > 0 && multiplier < 10) {
+            this.width = this.width * (1 / (multiplier + 1));
+            this.height = this.height * (1 / (multiplier + 1));
+        } else if (multiplier < 0) {
+            this.width = this.width * (-multiplier + 1);
+            this.height = this.height * (-multiplier + 1);
+        }
+    }
     
     public double xRange(double x) {
         return x * width / screenWidth - width / 2 + xOffset;

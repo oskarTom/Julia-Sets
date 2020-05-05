@@ -6,8 +6,6 @@ import com.mycompany.fraktaalit.logic.JuliaLogic;
 import com.mycompany.fraktaalit.logic.MandelbrotLogic;
 import com.mycompany.fraktaalit.ui.graphics.Zoom;
 import javafx.application.Application;
-import static javafx.application.Application.launch;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -18,16 +16,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.*;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.RenderedImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  *
@@ -67,19 +60,19 @@ public class UI extends Application{
         //---------------------------------------------------
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        BorderPane toolbar = new BorderPane();
+        BorderPane titlebar = new BorderPane();
         HBox toolbarRight = new HBox();
-        HBox toolbarLeft = new HBox();
+        HBox toolbar = new HBox();
 
         Point cursorCoord = new Point(0,0);
-        toolbar.setOnMouseReleased(e -> {
+        titlebar.setOnMouseReleased(e -> {
             cursorCoord.setLocation(0,0);
         });
-        toolbar.setOnMousePressed(e -> {
+        titlebar.setOnMousePressed(e -> {
             cursorCoord.setLocation(e.getX(), e.getY());
         });
 
-        toolbar.setOnMouseDragged(e -> {
+        titlebar.setOnMouseDragged(e -> {
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stage.setX(e.getScreenX() - cursorCoord.getX());
             stage.setY(e.getScreenY() - cursorCoord.getY());
@@ -99,17 +92,19 @@ public class UI extends Application{
         MenuButton filesButton = new MenuButton("Files");
         filesButton.getItems().add(saveButton);
 
+        MenuItem lockToCenterButton = new MenuItem("Unlock Julia from center");
+        ToggleButton lockToCenter = new ToggleButton();
         MenuItem resetJuliaZoom = new MenuItem("Reset Julia set zoom");
-        MenuItem resetZoom = new MenuItem("Reset Mandelbrot set zoom");
+        MenuItem resetMandelbrotZoom = new MenuItem("Reset Mandelbrot set zoom");
         MenuButton editButton = new MenuButton("Edit");
-        editButton.getItems().addAll(resetZoom, resetJuliaZoom);
+        editButton.getItems().addAll(lockToCenterButton, resetMandelbrotZoom, resetJuliaZoom);
 
-        toolbarLeft.getChildren().addAll(filesButton, editButton);
+        toolbar.getChildren().addAll(filesButton, editButton);
 
 
-        toolbar.setLeft(toolbarLeft);
-        toolbar.setCenter(new Label("Julia Sets"));
-        toolbar.setRight(toolbarRight);
+        titlebar.setLeft(toolbar);
+        titlebar.setCenter(new Label("Julia Sets"));
+        titlebar.setRight(toolbarRight);
 
         SaveMenu saveMenu = new SaveMenu();
 
@@ -144,6 +139,9 @@ public class UI extends Application{
         //---------------------------------------------------
         //                  ACTIONS
         //---------------------------------------------------
+
+            //TOOLBAR
+
         exit.setOnAction(e -> {
             primaryStage.close();
         });
@@ -155,6 +153,17 @@ public class UI extends Application{
         saveButton.setOnAction(e -> {
             saveMenu.start(primaryStage, c, zoomJulia);
         });
+
+        lockToCenterButton.setOnAction(e -> {
+            if(lockToCenter.isSelected()) {
+                lockToCenterButton.setText("Unlock Julia from center");
+            } else {
+                lockToCenterButton.setText("Lock Julia to center");
+            }
+            lockToCenter.fire();
+        });
+
+            //CANVAS
         
         mandelbrotCanvas.setOnMouseMoved(e -> {
             double x = e.getX();
@@ -197,7 +206,7 @@ public class UI extends Application{
             mandelbrot.draw(fs);
         });
         
-        resetZoom.setOnAction(e -> {
+        resetMandelbrotZoom.setOnAction(e -> {
             zoomMandelbrot.setHeight(initialZoomMandelbrot.getHeight());
             zoomMandelbrot.setWidth(initialZoomMandelbrot.getWidth());
             zoomMandelbrot.setXOffset(initialZoomMandelbrot.getXOffset());
@@ -210,12 +219,21 @@ public class UI extends Application{
             double y = e.getY();
             double delta = e.getDeltaY();
 
-            if (delta >= 0) {
-                zoomJulia.zoom(delta/32, x, y);
+            if(lockToCenter.isSelected()) {
+                if (delta >= 0) {
+                    zoomJulia.zoom(delta / 32, x, y);
+                } else {
+                    zoomJulia.zoom(delta / 32, screenWidth - x, screenHeight - y);
+                }
+                julia.draw(new FractalSetup(c, zoomJulia, iterations));
             } else {
-                zoomJulia.zoom(delta/32, screenWidth-x, screenHeight-y);
+                if (delta >= 0) {
+                    zoomJulia.zoomToCenter(delta / 32, x, y);
+                } else {
+                    zoomJulia.zoomToCenter(delta / 32, screenWidth - x, screenHeight - y);
+                }
+                julia.draw(new FractalSetup(c, zoomJulia, iterations));
             }
-            julia.draw(new FractalSetup(c, zoomJulia, iterations));
         });
         
         resetJuliaZoom.setOnAction(e -> {
@@ -233,7 +251,7 @@ public class UI extends Application{
         setup.setCenter(canvases);
 
 
-        setup.setTop(toolbar);
+        setup.setTop(titlebar);
         
         julia.draw(new FractalSetup(c, zoomJulia, iterations));
         
@@ -241,7 +259,6 @@ public class UI extends Application{
         scene.getStylesheets().add("dark.css");
 
         scene.setFill(Color.TRANSPARENT);
-        //primaryStage.initStyle(StageStyle.TRANSPARENT);
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Julia Sets");

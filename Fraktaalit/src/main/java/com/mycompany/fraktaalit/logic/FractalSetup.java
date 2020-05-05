@@ -1,7 +1,6 @@
 package com.mycompany.fraktaalit.logic;
 
 import com.mycompany.fraktaalit.ui.graphics.Zoom;
-import javafx.scene.canvas.Canvas;
 
 /**
  * Luokka määrittelee astukset fraktaalin kuvausta varten

@@ -92,13 +92,6 @@ public abstract class FractalDrawer {
             pencil.setColor(x, y, inSetColor);
         } else {
             pencil.setColor(x, y, outOfSetColor(list, test * 10));
-/*
-            if (test <= 50) {
-                pencil.setColor(x, y, Color.hsb(test * 0.4 + 250, 1, 1, test * 0.01 + 0.49));
-            } else {
-                pencil.setColor(x, y, Color.hsb(test * 0.4 + 250, 1, 1));
-            }
-*/
         }
     }
 
