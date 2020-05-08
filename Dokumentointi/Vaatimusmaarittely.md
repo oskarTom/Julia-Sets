@@ -10,4 +10,3 @@ Perusversion jälkeen ohjelmaa voidaan laajentaa esimerkiksi seuraavilla tavoill
 - :heavy_check_mark: Kompleksiluvun *c* voi valita suoraan Mandelbrotin joukosta
 - :heavy_check_mark: Zoomaus Mandelbrotin joukkoon
 - :heavy_check_mark: Zoomaus Julia joukkoon
-- :x: Joukon värien vaihtaminen
