@@ -7,6 +7,8 @@ Julian tai Mandelbrotin joukkoon voi zoomata hiirirullalla tai kahdella sormella
 
 Projekti on toteutettu hakemistoon Fraktaalit.
 
+_Lisää [Julia](https://en.wikipedia.org/wiki/Julia_set) ja [Mandelbrot](https://en.wikipedia.org/wiki/Mandelbrot_set) joukoista_
+
 ## Dokumentaatio
 [Käyttöohje](https://github.com/oskarTom/ot-harjoitustyo/blob/master/Dokumentointi/K%C3%A4ytt%C3%B6ohje.md)
 
@@ -18,6 +20,8 @@ Projekti on toteutettu hakemistoon Fraktaalit.
 
 [Testausdokumentti](https://github.com/oskarTom/ot-harjoitustyo/blob/master/Dokumentointi/testaus.md)
 ## Releaset
+[v1.4](https://github.com/oskarTom/ot-harjoitustyo/releases/tag/v1.4)
+
 [v1.3](https://github.com/oskarTom/ot-harjoitustyo/releases/tag/v1.3)
 
 [v1.2](https://github.com/oskarTom/ot-harjoitustyo/releases/tag/v1.2)
